@@ -1,0 +1,2 @@
+# One synth name per line (must match the master file name, e.g. Minimoog for Minimoog.rpp).
+# These get idle + a single-note test, and are tiered separately from polyphonic synths.
