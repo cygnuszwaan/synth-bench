@@ -1,0 +1,70 @@
+master	kind	format	fx_name	category	group	tags	folders	alt_formats
+++chebyshev	effect	vst3	++chebyshev	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+++decimate	effect	vst3	++decimate	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+apShaper	effect	vst3	apShaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+Beatgrader	effect	vst3	Beatgrader	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Bite	effect	vst3	Bite	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+bx-bassdude	effect	vst3	bx_bassdude	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-blackdist2	effect	vst3	bx_blackdist2	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-clipper	effect	vst3	bx_clipper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+bx-distorange	effect	vst3	bx_distorange	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-greenscreamer	effect	vst3	bx_greenscreamer	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-megadual	effect	vst3	bx_megadual	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-megasingle	effect	vst3	bx_megasingle	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-metal2	effect	vst3	bx_metal2	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-rockergain100	effect	vst3	bx_rockergain100	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-rockrack-V3	effect	vst3	bx_rockrack V3	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-yellowdrive	effect	vst3	bx_yellowdrive	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+Crisp	effect	vst3	Crisp	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+crunchrr	effect	vst3	crunchrr	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Decapitator	effect	vst	Decapitator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Decimort2	effect	vst3	Decimort2	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Degrader	effect	vst3	Degrader	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+destruqtor	effect	vst3	destruqtor	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Devastor2	effect	vst3	Devastor2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Devil-Loc-Deluxe	effect	vst	Devil-Loc_Deluxe	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Digitalis	effect	vst3	Digitalis	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Dirt	effect	vst3	Dirt	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Dist-COLDFIRE	effect	vst3	Dist COLDFIRE	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Dist-TUBE-CULTURE	effect	vst3	Dist TUBE-CULTURE	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Driver	effect	vst3	Driver	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+FabFilter-Saturn	effect	vst3	FabFilter Saturn	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+FabFilter-Saturn-2	effect	vst3	FabFilter Saturn 2	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Faturator	effect	vst3	Faturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+GClip	effect	vst	GClip	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+Guitar-Rig-5	effect	vst	Guitar Rig 5	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+Hate	effect	vst3	Hate	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+iZotope-Trash-2	effect	vst3	iZotope Trash 2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Bitcrush	effect	vst3	kHs Bitcrush	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+kHs-Clipper	effect	vst3	kHs Clipper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+kHs-Distortion	effect	vst3	kHs Distortion	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Phase-Distortion	effect	vst3	kHs Phase Distortion	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Shaper	effect	vst3	kHs Shaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MAmp	effect	vst3	MAmp	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MBitFun	effect	vst3	MBitFun	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+MBitFunMB	effect	vst3	MBitFunMB	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+MDistortionMB	effect	vst3	MDistortionMB	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+MGuitarArchitect	effect	vst3	MGuitarArchitect	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MPhatik	effect	vst3	MPhatik	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MPolySaturator	effect	vst3	MPolySaturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MSaturator	effect	vst3	MSaturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MSaturatorMB	effect	vst3	MSaturatorMB	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MTurboAmp	effect	vst3	MTurboAmp	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MWaveFolder	effect	vst3	MWaveFolder	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveFolderMB	effect	vst3	MWaveFolderMB	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveShaper	effect	vst3	MWaveShaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveShaperMB	effect	vst3	MWaveShaperMB	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+NeuralAmpModeler	effect	vst3	NeuralAmpModeler	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+Nudistort	effect	vst3	Nudistort	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+OhmicideS	effect	vst3	Ohmicide[S]	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Radiator	effect	vst	Radiator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+RC-20-Retro-Color-v2	effect	vst3	RC-20 Retro Color v2	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Redoptor2	effect	vst3	Redoptor2	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Rift	effect	vst3	Rift	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Stylust	effect	vst3	Stylust	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Thermal	effect	vst3	Thermal	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Trash	effect	vst3	Trash	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+trasher	effect	vst3	trasher	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+Unfiltered-Audio-Dent-2	effect	vst3	Unfiltered Audio Dent 2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Unfiltered-Audio-lo-fi-af	effect	vst3	Unfiltered Audio lo-fi-af	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+WaveBox	effect	vst3	WaveBox	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	

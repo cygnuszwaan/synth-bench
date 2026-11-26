@@ -38,7 +38,7 @@ def recs(df, cols):
 
 
 def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_colors,
-               filter_factors=(), fx_cols=()):
+               filter_factors=(), fx_cols=(), whiskers="range"):
     """out: summary table; g: per-project table; lad: ladder points; inter: stack interactions;
     by_tag: tag ranking or None; factors: [(factor, [(level, n_projects), ...]), ...]."""
     script, offline = plotly_script()
@@ -56,20 +56,20 @@ def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_color
                for col, key in fx_cols if key in out.columns]
     cost_cols = [c for c in out.columns if c.endswith("_cost_per_step") and "@" not in c]
     data = dict(
-        summary=recs(out, ["synth", "class", "tier", "tier_stable", "ref_load", "ref_lo", "ref_hi",
+        summary=recs(out, ["synth", "class", "tier", "tier_stable", "ref_load", "ref_lo", "ref_hi", "ref_wlo", "ref_whi", "ref_sd",
                            "idle", "heaviest", "max_spike", "redundant_in"] + [k for _, k in fx_cols] + cost_cols),
         fx=dict(cols=fx_rows),
         costCols=cost_cols,
-        ladders=recs(lad, ["synth", "factor", "line", "lvl", "load", "load_lo", "load_hi", "rel_range",
+        ladders=recs(lad, ["synth", "factor", "line", "lvl", "load", "load_lo", "load_hi", "wlo", "whi", "rel_range",
                            "pname", "conds"])
         if len(lad) else [],
-        heat=recs(g[g.is_cfg], ["synth", "col", "load", "load_lo", "load_hi", "pname", "conds", "base_load",
+        heat=recs(g[g.is_cfg], ["synth", "col", "load", "load_lo", "load_hi", "wlo", "whi", "pname", "conds", "base_load",
                                 "over_base", "over_lo", "over_hi", "x_base"]),
         inter=recs(inter, ["synth", "conditions", "load", "base_load", "additive_pred", "add_ratio",
                            "mult_pred", "mult_ratio", "conds"]),
-        tags=recs(by_tag, ["tag", "cls", "synth", "project", "load", "lo", "hi", "rank",
+        tags=recs(by_tag, ["tag", "cls", "synth", "project", "load", "lo", "hi", "wlo", "whi", "rank",
                            "x_cheapest", "redundant", "conds"]) if by_tag is not None else [],
-        projects=recs(proj, ["synth", "conditions", "load", "load_lo", "load_hi", "rel_range", "n",
+        projects=recs(proj, ["synth", "conditions", "load", "load_lo", "load_hi", "wlo", "whi", "sd", "rel_range", "n",
                              "spike", "conds", "over_base", "x_base"]),
         thresholds={k: list(v) for k, v in thresholds.items()},
         tierColors=tier_colors,
@@ -79,11 +79,14 @@ def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_color
                        for k, v in factors if k in filter_factors],
         meta=dict(generated=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
                   length=float(g.length.iloc[0]) if len(g) else None,
-                  projects=int(len(g)), offline=offline),
+                  projects=int(len(g)), offline=offline, whiskers=whiskers),
     )
     blob = json.dumps(data).replace("</", "<\\/")
     vals = {"PLOTLY": script, "DATA": blob, "JS": APP_JS}
-    html = re.sub(r"__(PLOTLY|DATA|JS)__", lambda m: vals[m.group(1)], TEMPLATE)  # one pass
+    wh = ("show plus/minus 1 standard deviation of the runs, centred on the median" if whiskers == "std"
+          else "span the fastest to slowest run")
+    html = re.sub(r"__(PLOTLY|DATA|JS)__", lambda m: vals[m.group(1)],
+                  TEMPLATE.replace("{{WHTXT}}", wh))  # one pass
     Path(path).write_text(html, encoding="utf-8")
     return offline
 
@@ -154,10 +157,10 @@ details{margin-top:26px}
 <section><h2>Summary</h2><p class="hint">Click a column heading to sort.</p>
   <div class="scroll"><div id="tbl-summary"></div></div></section>
 <section id="s-tiers"><h2>Reference load by synth</h2>
-  <p class="hint">Bars are the preset=typical load (or the base config); whiskers span the fastest to slowest run; dashed lines are the tier thresholds.
+  <p class="hint">Bars are the preset=typical load (or the base config); whiskers {{WHTXT}}; dashed lines are the tier thresholds.
   <span class="key" id="tierkey"></span></p><div id="tiers"></div></section>
 <section id="s-ladder"><h2>Ladders</h2>
-  <p class="hint">Load against one numeric factor with every other condition held fixed. Dashed lines are the same synth with other conditions applied (named in the legend). Bars span the fastest to slowest run; larger markers mean more run-to-run spread. Click a legend entry to hide a line, double-click to isolate it.</p>
+  <p class="hint">Load against one numeric factor with every other condition held fixed. Dashed lines are the same synth with other conditions applied (named in the legend). Whiskers {{WHTXT}}; larger markers mean more run-to-run spread (fastest to slowest run, whatever the whisker setting). Click a legend entry to hide a line, double-click to isolate it.</p>
   <div class="ctl"><label>Factor <select id="factor"></select></label>
   <label><input type="checkbox" id="logy"> log scale</label></div><div id="ladder"></div></section>
 <section id="s-heat"><h2>Configuration tests</h2>
@@ -188,6 +191,7 @@ __PLOTLY__
 APP_JS = r"""
 (() => {
 const D = JSON.parse(document.getElementById("data").textContent);
+const WHLAB = D.meta.whiskers === "std" ? "\u00b11 std dev" : "fastest\u2013slowest run";
 const $ = (s, r = document) => r.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt = (v, d = 4) => (v == null || Number.isNaN(v)) ? "\u2013" : Number(v).toFixed(d);
@@ -373,6 +377,7 @@ function renderTables() {
     {key: "x_base", label: "\u00d7 base", num: true, fmt: v => v == null ? "\u2013" : fmt(v, 2)},
     {key: "load_lo", label: "fastest", num: true, fmt: v => fmt(v)},
     {key: "load_hi", label: "slowest", num: true, fmt: v => fmt(v)},
+    {key: "sd", label: "std dev", num: true, fmt: v => v == null ? "\u2013" : fmt(v)},
     {key: "rel_range", label: "spread", num: true, fmt: v => v == null ? "\u2013" : (v * 100).toFixed(0) + "%"},
     {key: "n", label: "runs", num: true},
     {key: "spike", label: "spike", num: true, fmt: v => fmt(v, 2)},
@@ -389,13 +394,13 @@ function renderTiers() {
     const o = rows.filter(r => r.class === c).sort((a, b) => a.ref_load - b.ref_load);
     const div = document.createElement("div"); host.appendChild(div);
     const [lo, hi] = D.thresholds[c];
-    const mx = Math.max(hi, ...o.map(r => r.ref_hi ?? r.ref_load)) * 1.08;
+    const mx = Math.max(hi, ...o.map(r => r.ref_whi ?? r.ref_load)) * 1.08;
     draw(div, [{type: "bar", orientation: "h", y: o.map(r => r.synth), x: o.map(r => r.ref_load),
       marker: {color: o.map(r => D.tierColors[r.tier] || "gray")},
-      error_x: {type: "data", symmetric: false, array: o.map(r => (r.ref_hi ?? r.ref_load) - r.ref_load),
-                arrayminus: o.map(r => r.ref_load - (r.ref_lo ?? r.ref_load)), thickness: 1.5, color: fg},
-      customdata: o.map(r => [r.tier, r.ref_lo, r.ref_hi]),
-      hovertemplate: "<b>%{y}</b><br>load %{x:.4f}<br>fastest\u2013slowest run %{customdata[1]:.4f} \u2013 %{customdata[2]:.4f}<br>tier: %{customdata[0]}<extra></extra>"}],
+      error_x: {type: "data", symmetric: false, array: o.map(r => (r.ref_whi ?? r.ref_load) - r.ref_load),
+                arrayminus: o.map(r => r.ref_load - (r.ref_wlo ?? r.ref_load)), thickness: 1.5, color: fg},
+      customdata: o.map(r => [r.tier, r.ref_wlo, r.ref_whi]),
+      hovertemplate: "<b>%{y}</b><br>load %{x:.4f}<br>" + WHLAB + " %{customdata[1]:.4f} \u2013 %{customdata[2]:.4f}<br>tier: %{customdata[0]}<extra></extra>"}],
       layout({title: {text: "Class: " + c, font: {size: 13}, x: 0.01}, height: 110 + 28 * o.length,
         margin: {t: 34}, xaxis: {title: {text: "load (net CPU s per audio s)"}, range: [0, mx]},
         yaxis: {type: "category", automargin: true},
@@ -419,10 +424,10 @@ function renderLadder() {
     traces.push({type: "scatter", mode: pts.length > 1 ? "lines+markers" : "markers", name, legendgroup: name,
       x: pts.map(p => p.lvl), y: pts.map(p => p.load), line: {color: col, dash, width: 2},
       marker: {color: col, size: pts.map(p => 6 + Math.min(p.rel_range || 0, 0.3) / 0.3 * 10)},
-      error_y: {type: "data", symmetric: false, array: pts.map(p => p.load_hi - p.load),
-                arrayminus: pts.map(p => p.load - p.load_lo), thickness: 1, width: 3, color: col},
-      customdata: pts.map(p => [p.load_lo, p.load_hi]),
-      hovertemplate: "<b>%{fullData.name}</b><br>" + esc(state.factor) + " = %{x}<br>load %{y:.4f}<br>fastest\u2013slowest run %{customdata[0]:.4f} \u2013 %{customdata[1]:.4f}<extra></extra>"});
+      error_y: {type: "data", symmetric: false, array: pts.map(p => p.whi - p.load),
+                arrayminus: pts.map(p => p.load - p.wlo), thickness: 1, width: 3, color: col},
+      customdata: pts.map(p => [p.wlo, p.whi]),
+      hovertemplate: "<b>%{fullData.name}</b><br>" + esc(state.factor) + " = %{x}<br>load %{y:.4f}<br>" + WHLAB + " %{customdata[0]:.4f} \u2013 %{customdata[1]:.4f}<extra></extra>"});
     if (pts.length > 1) {
       // invisible points along each segment so hovering anywhere on the line names it
       const hx = [], hy = [], K = 24;
@@ -487,14 +492,14 @@ function renderOver() {
   $("#overtitle").textContent = "Ranked by " + METRICS[M].label;
   $("#overhint").textContent = M === "over_base"
     ? "Whiskers are the conservative range (fastest run minus the base's slowest, to slowest minus the base's fastest). Faded bars: the range includes zero, so the difference is within run-to-run spread."
-    : M === "load" ? "Whiskers span the fastest to slowest run."
+    : M === "load" ? (D.meta.whiskers === "std" ? "Whiskers are \u00b11 standard deviation of the runs." : "Whiskers span the fastest to slowest run.")
     : "Load divided by the base's load (blank where the base is almost zero).";
   let rows = heatRows().filter(r => r[M] != null).sort((a, b) => b[M] - a[M]);
   if (!rows.length) return empty(host, "Nothing to rank with the current filters.");
   const total = rows.length;
   if (state.overTop > 0) rows = rows.slice(0, state.overTop);
   const lab = rows.map(r => r.synth + "  " + r.col);
-  const bars = M === "load" ? {lo: r => r.load_lo, hi: r => r.load_hi}
+  const bars = M === "load" ? {lo: r => r.wlo, hi: r => r.whi}
              : M === "over_base" ? {lo: r => r.over_lo, hi: r => r.over_hi} : null;
   const faded = r => M === "over_base" && r.over_lo != null && r.over_lo <= 0 && r.over_hi >= 0;
   draw(host, [{type: "bar", orientation: "h", y: lab, x: rows.map(r => r[M]),
@@ -538,9 +543,9 @@ function renderTags() {
   const mk = (flag, name, col) => {
     const o = rows.filter(r => !!r.redundant === flag);
     return {type: "bar", orientation: "h", name, y: o.map(r => r.synth), x: o.map(r => r.load), marker: {color: col},
-      error_x: {type: "data", symmetric: false, array: o.map(r => r.hi - r.load), arrayminus: o.map(r => r.load - r.lo), thickness: 1.5, color: theme().fg},
-      customdata: o.map(r => [r.project, r.rank, r.x_cheapest, r.lo, r.hi]),
-      hovertemplate: "<b>%{y}</b> (rank %{customdata[1]})<br>project: %{customdata[0]}<br>load %{x:.4f}<br>fastest\u2013slowest run %{customdata[3]:.4f} \u2013 %{customdata[4]:.4f}<br>%{customdata[2]:.2f}\u00d7 the cheapest<extra></extra>"};
+      error_x: {type: "data", symmetric: false, array: o.map(r => r.whi - r.load), arrayminus: o.map(r => r.load - r.wlo), thickness: 1.5, color: theme().fg},
+      customdata: o.map(r => [r.project, r.rank, r.x_cheapest, r.wlo, r.whi]),
+      hovertemplate: "<b>%{y}</b> (rank %{customdata[1]})<br>project: %{customdata[0]}<br>load %{x:.4f}<br>" + WHLAB + " %{customdata[3]:.4f} \u2013 %{customdata[4]:.4f}<br>%{customdata[2]:.2f}\u00d7 the cheapest<extra></extra>"};
   };
   draw(host, [mk(false, "within 2\u00d7 of cheapest", "#4e79a7"), mk(true, "redundant (>2\u00d7 cheapest)", "#c94040")],
     layout({height: 150 + 30 * rows.length, margin: {l: 110, t: 50}, legend: {orientation: "h", y: 1.0, yanchor: "bottom"},

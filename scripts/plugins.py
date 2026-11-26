@@ -49,13 +49,17 @@ def read_aliases(path):
     return {r[0].strip(): r[1].strip() for r in rows if len(r) > 1 and r[1].strip()}
 
 
-def scan(root, fx_top, aliases):
+def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
     root = Path(root).expanduser()
     if not root.is_dir():
         raise SystemExit(f"{root} is not a folder")
+    # Scanning from inside "Audio Effects" (or "Instruments") itself: count that folder as the top level
+    root_is_top = slug(root.name) in (slug(fx_top), slug(instr_top)) and not kind_all
     found = []  # (stem, ext, rel_folders)
     for dirpath, dirnames, filenames in os.walk(root):
         rel = Path(dirpath).relative_to(root).parts
+        if root_is_top:
+            rel = (root.name,) + rel
         dirnames.sort()
         keep = []
         for d in dirnames:
@@ -100,8 +104,8 @@ def scan(root, fx_top, aliases):
             if rel not in folders:
                 folders.append(rel)
         first = folders[0]
-        is_fx = first[0].lower() == fx_top.lower()
-        below = [slug(p) for p in first[1:]]
+        is_fx = (kind_all == "effect") if kind_all else slug(first[0]) == slug(fx_top)
+        below = [slug(p) for p in (first if kind_all else first[1:])]
         category = below[-1] if below else slug(first[0])
         group = below[-2] if len(below) >= 2 else ""
         tags = []
@@ -184,7 +188,7 @@ def write_effects_csv(rows):
               f"{' ...' if len(missing) > 8 else ''}")
 
 
-def write_tags_csv(rows, depth):
+def write_tags_csv(rows, depth, keep_top=False):
     existing = []
     if Path("tags.csv").exists():
         with open("tags.csv", encoding="utf-8-sig", newline="") as fh:
@@ -196,7 +200,8 @@ def write_tags_csv(rows, depth):
     for r in rows:
         if r["kind"] != "instrument":
             continue
-        tags = r["tags"].split("|")[1:]                        # drop the top-level folder (Instruments)
+        tags = r["tags"].split("|")
+        tags = tags if keep_top else tags[1:]                  # drop the top-level folder (Instruments)
         tags = tags[-1:] if depth == "leaf" else tags
         for t in tags:
             if (r["master"], t) not in have:
@@ -218,6 +223,10 @@ def main():
     s = sub.add_parser("scan", help="walk the plugin folder and write plugins.tsv")
     s.add_argument("root")
     s.add_argument("--fx-top", default="Audio Effects", help="top-level folder that holds effects")
+    s.add_argument("--instr-top", default="Instruments", help="top-level folder that holds instruments")
+    s.add_argument("--kind-all", choices=["instrument", "effect"],
+                   help="treat EVERYTHING under the scanned folder as this kind (e.g. you scanned a "
+                        "folder of reverbs and it has no Audio Effects / Instruments level)")
     s.add_argument("--aliases", default="aliases.csv",
                    help="optional csv: file_stem,master_name (to match names already in your results)")
     s.add_argument("--write-effects", action="store_true", help="(over)write effects.csv, keeping vendor values")
@@ -234,16 +243,23 @@ def main():
 
     a = ap.parse_args()
     if a.cmd == "scan":
-        rows, notes = scan(a.root, a.fx_top, read_aliases(a.aliases))
+        rows, notes = scan(a.root, a.fx_top, read_aliases(a.aliases), a.instr_top, a.kind_all)
         write_tsv(CATALOG, rows, COLS)
         ne = sum(r["kind"] == "effect" for r in rows)
         print(f"wrote {CATALOG}: {len(rows)} plugins ({len(rows) - ne} instruments, {ne} effects)")
         for n in notes:
             print("  note:", n)
+        tops = sorted({r["folders"].split(" ; ")[0].split("/")[0] for r in rows})
+        if rows and ne == 0 and not a.kind_all:
+            print(f"  WARNING: 0 effects. A plugin counts as an effect only when it sits under a folder "
+                  f"named '{a.fx_top}'. Top-level folders found: {', '.join(tops[:8])}. "
+                  f"Use --fx-top NAME, or --kind-all effect if you scanned a folder of effects.")
+        elif rows and ne == len(rows) and not a.kind_all and slug(Path(a.root).name) != slug(a.fx_top):
+            print("  WARNING: every plugin was classed as an effect; check --fx-top.")
         if a.write_effects:
             write_effects_csv(rows)
         if a.write_tags:
-            write_tags_csv(rows, a.tag_depth)
+            write_tags_csv(rows, a.tag_depth, bool(a.kind_all))
         return
 
     rows = select(read_catalog(), a.folder, a.kind)

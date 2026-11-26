@@ -204,6 +204,22 @@ STEP 7. ANALYSE
 --------------------------------------------------------------------------
   source .venv/bin/activate
   python3 scripts/analyze.py
+  python3 scripts/analyze.py --whiskers std     (whiskers = +/- 1 standard deviation)
+
+  WHISKERS. By default the whisker lines show the fastest to slowest run. With
+  --whiskers std they show plus or minus one sample standard deviation of the runs,
+  centred on the median (the plotted value) and never below zero. This applies to the PNG
+  charts that draw whiskers and to the tiers, ladders, ranking and tag charts in
+  report.html; the hover text and hints say which is in use, and the project table in the
+  report gains a "std dev" column. summary.csv gains ref_sd, ref_wlo and ref_whi (by_tag.csv
+  gains wlo and whi). Notes:
+    - Std dev from 3 runs is itself very noisy; it is steadier from about 8 runs. The
+      analysis prints the runs per project when you use it. A project with one run has no
+      whisker. The std dev does not include noise in the baseline that was subtracted.
+    - Only the whiskers change. The "~" within-spread marks, tier_stable, the cost-over-base
+      intervals and the ladder marker size still use fastest to slowest.
+    - On the PNG ladder charts whiskers only appear when SPREAD_STYLE is "bars" or "both".
+    - To make std the default, set WHISKERS = "std" at the top of analyze.py.
 
   Prints a table and writes:
     results/report.html                 INTERACTIVE report (open in a browser; see below)
@@ -391,6 +407,8 @@ STEP 7. ANALYSE
     Starter file included, based on the tests in your results so far.
 
   TUNING (constants at the top of scripts/analyze.py)
+    WHISKERS = "range"        whisker lines: "range" (fastest to slowest run) or
+                              "std" (+/- 1 standard deviation); --whiskers overrides it
     SPREAD_STYLE = "size"     how run-to-run spread is drawn on ladder charts:
                               "size" (marker area grows with (max-min)/median),
                               "bars" (min-max whiskers), "both", or "off"
@@ -424,11 +442,20 @@ AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
       Audio Effects/Reverb/ValhallaRoom.vst3
 
   STEP A. SCAN THE FOLDER
-    python3 scripts/plugins.py scan /path/to/Plugins
+    cd /path/to/synth-bench          (the scan writes its files into the folder you run it from)
+    python3 scripts/plugins.py scan /path/to/Plugins --write-effects --write-tags
+    Without the two flags it only writes plugins.tsv. The flags are what fill the other files:
+      --write-effects   writes effects.csv   (effect,category,group,vendor)
+      --write-tags      adds rows to tags.csv (instruments only)
     Writes plugins.tsv: one row per plugin with kind (instrument/effect), the cleaned master
     name, category, group, and every folder tag. Rules:
-      - Anything under "Audio Effects" is an effect; everything else is an instrument.
-        Use --fx-top "Name" if your effects folder is called something else.
+      - Anything under a top-level folder named "Audio Effects" is an effect; everything else
+        is an instrument. Use --fx-top "Name" if your effects folder is called something else.
+        Scanning a folder that IS "Audio Effects" or "Instruments" works too. For any other
+        folder (e.g. one called Reverbs) use --kind-all effect (or instrument). The scan
+        prints a WARNING when it finds no effects. The kind decides which template is used
+        for the master, so check the counts it prints ("N instruments, M effects"); the
+        script's console output also shows the kind and the template for every plugin.
       - category = the deepest folder; group = its parent (blank if there is only one level).
         Audio Effects/Dynamics/Compressors/X  ->  category compressors, group dynamics
       - Names are cleaned to what stamp.py accepts: spaces become hyphens, other odd characters
@@ -465,7 +492,10 @@ AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
 
   STEP C. BUILD THE MASTERS IN REAPER
     Instruments need templates/template.rpp; effects also need templates/template_fx.rpp and
-    signals/fx_test.wav (see EFFECTS PLUGINS below).
+    signals/fx_test.wav (see EFFECTS PLUGINS below). If the build list has effects and
+    template_fx.rpp is missing, the script stops with a message instead of building them.
+    Check an effect master with:  grep -L "SOURCE WAVE" masters/*.RPP   (lists effect masters
+    that were built from the wrong template; stamp.py also stops on them).
     1. Open REAPER with a new, empty project. The script discards whatever is open without
        asking.
     2. Actions > Show action list > New action > Load ReaScript..., choose
@@ -483,6 +513,8 @@ AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
          fuzzy-skipped   REAPER only found a longer name (e.g. "Serum" matched "Serum 2"), so
                          nothing was saved. Fix the name via aliases.csv, or set
                          ALLOW_FUZZY = true at the top to accept these
+         wrong-template  the saved master had a MIDI item where an effect needs audio (or the
+                         reverse); the file was deleted again
          fx-count / save-failed / no-template   see the detail on the row
     Plugins that open a licence or login window on first load stall the script until you
     close the window. Plugins that need REAPER to scan them first will show up as not-found.

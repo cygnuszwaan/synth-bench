@@ -27,9 +27,9 @@ What the analysis does with conditions:
   2+ conditions    a stack: reports an additive interaction ratio (1 = costs just add,
                    >1 = worse than the parts suggest) and a multiplicative one (1 = costs
                    multiply, the natural null for things like unison x notes)
-Usage (from synth-bench/):  python3 scripts/analyze.py
+Usage (from synth-bench/):  python3 scripts/analyze.py [--whiskers range|std]
 """
-import glob, re, sys
+import argparse, glob, re, sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -58,7 +58,16 @@ MARKER_MIN, MARKER_MAX = 6, 140   # marker area range (points^2)
 SPREAD_CAP = 0.30                 # relative spread at which the marker reaches MARKER_MAX
 SPREAD_FADE = True                # noisier points are also more transparent (size styles only)
 ALPHA_MAX, ALPHA_MIN = 1.0, 0.30  # opacity of the steadiest / noisiest (>= SPREAD_CAP) points
+# What the whisker lines show (charts and report.html):
+#   "range" = fastest to slowest run   "std" = plus/minus one sample standard deviation of the runs,
+#   drawn around the plotted (median) load and never below zero. Override with --whiskers.
+#   Std dev from 3 runs is itself very noisy; it becomes meaningful with roughly 8+ runs per project.
+#   resolved ("~"), tier_stable and the cost-over-base intervals always use fastest/slowest.
+WHISKERS = "range"
 TIER_COLORS = {"workhorse": "#2e9e5b", "acceptable": "#e0a020", "avoid?": "#c94040"}
+
+
+WH_TEXT = "fastest to slowest run"   # set from WHISKERS in main()
 
 
 def read_list(path):
@@ -102,8 +111,8 @@ def rank_tags(g, out):
         tags["project"] = ""
     tags = tags.drop_duplicates(["synth", "tag"])
     cls = dict(zip(out.synth, out["class"]))
-    ref = {r.synth: (r.ref_load, r.ref_lo, r.ref_hi) for r in out.itertuples()}
-    look = {(r.synth, r.pname): (r.load, r.load_lo, r.load_hi) for r in g.itertuples()}
+    ref = {r.synth: (r.ref_load, r.ref_lo, r.ref_hi, r.ref_wlo, r.ref_whi) for r in out.itertuples()}
+    look = {(r.synth, r.pname): (r.load, r.load_lo, r.load_hi, r.wlo, r.whi) for r in g.itertuples()}
     rows, problems = [], []
     for t in tags.itertuples():
         val, match = None, None
@@ -125,7 +134,7 @@ def rank_tags(g, out):
             continue
         rows.append(dict(tag=t.tag, cls=cls[t.synth], synth=t.synth,
                          project=t.project or "reference", load=val[0], lo=val[1], hi=val[2],
-                         conds=match))
+                         wlo=val[3], whi=val[4], conds=match))
     if not rows:
         return None, problems
     df = pd.DataFrame(rows)
@@ -145,11 +154,11 @@ def tag_chart(df):
                              gridspec_kw={"height_ratios": heights})
     for ax, ((tag, c), gr) in zip(axes[:, 0], groups):
         gr = gr.sort_values("load", ascending=False)  # cheapest ends up on top
-        err = [(gr.load - gr.lo).clip(lower=0), (gr.hi - gr.load).clip(lower=0)]
+        err = [(gr.load - gr.wlo).clip(lower=0), (gr.whi - gr.load).clip(lower=0)]
         ax.barh(gr.synth, gr.load, xerr=err, error_kw=dict(lw=1, capsize=2),
                 color=["#c94040" if r else "#4a7fb5" for r in gr.redundant])
         ax.set_title(f"{tag} ({c})", fontsize=9, loc="left")
-        ax.set_xlabel("load (bars: fastest-slowest run; red = redundant vs cheapest)", fontsize=7)
+        ax.set_xlabel(f"load (whiskers: {WH_TEXT}; red = redundant vs cheapest)", fontsize=7)
     fig.tight_layout()
     fig.savefig(Path("results/charts") / "tags.png", dpi=150)
     plt.close(fig)
@@ -184,7 +193,7 @@ def make_charts(g, out, lad):
             (line,) = ax.plot(x.lvl, x.load, lw=1.2, label=lab)
             c = line.get_color()
             if SPREAD_STYLE in ("bars", "both"):
-                ax.vlines(x.lvl, x.load_lo, x.load_hi, color=c, lw=1, alpha=0.8)
+                ax.vlines(x.lvl, x.wlo, x.whi, color=c, lw=1, alpha=0.8)
             if SPREAD_STYLE in ("size", "both"):
                 fr = (x.rel_range.fillna(0).clip(upper=SPREAD_CAP) / SPREAD_CAP).to_numpy()
             else:
@@ -207,8 +216,8 @@ def make_charts(g, out, lad):
         ax.legend(fontsize=7, ncol=2)
         sz = f"larger, fainter marker = more run-to-run spread (range / median, max at {SPREAD_CAP:.0%}+)"
         notes = {"size": sz if SPREAD_FADE else sz.replace(", fainter", ""),
-                 "bars": "whiskers = fastest to slowest run",
-                 "both": "whiskers = fastest to slowest run; " + sz,
+                 "bars": f"whiskers = {WH_TEXT}",
+                 "both": f"whiskers = {WH_TEXT}; " + sz,
                  "off": ""}[SPREAD_STYLE]
         if notes:
             fig.text(0.5, 0.008, notes, ha="center", fontsize=7, color="gray")
@@ -295,6 +304,14 @@ def stack_interactions(synth, cls, rows, typ_row, dn):
 
 
 def main():
+    global WHISKERS, WH_TEXT
+    ap = argparse.ArgumentParser(description="Summarise benchmark results (see the docstring).")
+    ap.add_argument("--whiskers", choices=["range", "std"], default=WHISKERS,
+                    help="whisker lines show fastest-to-slowest run (range) or +/- 1 standard "
+                         "deviation of the runs (std). Default: %(default)s")
+    WHISKERS = ap.parse_args().whiskers
+    WH_TEXT = ("plus/minus 1 standard deviation of the runs" if WHISKERS == "std"
+               else "fastest to slowest run")
     files = sorted(glob.glob("results/run_*.csv"))
     if not files:
         raise SystemExit("No results/run_*.csv found")
@@ -317,6 +334,7 @@ def main():
     g = df.groupby(["pname", "synth", "cls"], as_index=False).agg(
         wall_med=("wall_s", "median"), wall_max=("wall_s", "max"),
         cpu_med=("cpu_s", "median"), cpu_min=("cpu_s", "min"), cpu_max=("cpu_s", "max"),
+        cpu_std=("cpu_s", "std"),
         length=("length_s", "first"), n=("run", "count"))
     g["conds"] = g.pname.map(conds_of)
 
@@ -343,6 +361,11 @@ def main():
     g["load_lo"] = (g.cpu_min - b_cpu).clip(lower=0) / g.length   # fastest run
     g["load_hi"] = (g.cpu_max - b_cpu).clip(lower=0) / g.length   # slowest run
     g["rel_range"] = (g.load_hi - g.load_lo) / g.load.where(g.load > 0)
+    g["sd"] = (g.cpu_std / g.length).fillna(0)   # one run has no spread; baseline noise not included
+    if WHISKERS == "std":
+        g["wlo"], g["whi"] = (g.load - g.sd).clip(lower=0), g.load + g.sd
+    else:
+        g["wlo"], g["whi"] = g.load_lo, g.load_hi
     g["wall_load"] = (g.wall_med - b_wall).clip(lower=0) / g.length
     g["spike"] = g.wall_max / g.wall_med  # worst run vs median (wall-clock; includes stalls)
     g["is_cfg"] = g.conds.map(lambda c: bool(set(c) - {"notes"}))
@@ -376,7 +399,8 @@ def main():
             if len(lvls) >= 2 or is_base:
                 line = synth if is_base else f"{synth} @ {naming.label(ctx, dn)}"
                 ladders += [dict(synth=synth, factor=f, line=line, lvl=v, load=x.load,
-                                 load_lo=x.load_lo, load_hi=x.load_hi, rel_range=x.rel_range,
+                                 load_lo=x.load_lo, load_hi=x.load_hi, wlo=x.wlo, whi=x.whi,
+                                 rel_range=x.rel_range,
                                  pname=x.pname, conds=x.conds)
                             for v, x in pts]
 
@@ -398,6 +422,9 @@ def main():
         r["ref_load"] = ref_row.load if ref_row is not None else np.nan
         r["ref_lo"] = ref_row.load_lo if ref_row is not None else np.nan
         r["ref_hi"] = ref_row.load_hi if ref_row is not None else np.nan
+        r["ref_sd"] = ref_row.sd if ref_row is not None else np.nan
+        r["ref_wlo"] = ref_row.wlo if ref_row is not None else np.nan
+        r["ref_whi"] = ref_row.whi if ref_row is not None else np.nan
 
         # stacking: how much worse than the sum (or product) of the parts?
         recs, probs = stack_interactions(synth, cls, by, base_row if cls == "fx" else None, dn)
@@ -461,6 +488,10 @@ def main():
     lad = pd.DataFrame(ladders)
     make_charts(g, out, lad)
 
+    if WHISKERS == "std":
+        print(f"\nWhiskers: +/- 1 standard deviation of the runs (runs per project: min {int(g.n.min())}, "
+              f"median {int(g.n.median())}). With fewer than about 8 runs the std dev is itself very noisy; "
+              f"projects with one run get no whisker.")
     pd.set_option("display.width", 200, "display.max_columns", 20)
     show = [c for c in ["synth", "class", *[k for _, k in fx_keys], "idle", "notes_cost_per_step", "unison_cost_per_step",
                         "ref_load", "heaviest", "max_spike", "tier", "tier_stable"] if c in out]
@@ -515,7 +546,8 @@ def main():
     if HTML_REPORT:
         try:
             offline = report.write_html("results/report.html", out, g, lad, inter, by_tag, fac_list,
-                                        THRESHOLDS, TIER_COLORS, FILTER_FACTORS, fx_keys)
+                                        THRESHOLDS, TIER_COLORS, FILTER_FACTORS, fx_keys,
+                                        whiskers=WHISKERS)
             print("\nInteractive report: results/report.html"
                   + ("" if offline else "  (needs internet to open; pip install plotly makes it "
                                         "self-contained)"))

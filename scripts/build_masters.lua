@@ -70,12 +70,29 @@ end
 fh:close()
 
 -- ---- templates ----
-local tpl_synth = first_existing(BASE .. SEP .. "templates" .. SEP .. "template.rpp",
-                                 BASE .. SEP .. "templates" .. SEP .. "template.RPP")
-local tpl_fx    = first_existing(BASE .. SEP .. "templates" .. SEP .. "template_fx.rpp",
-                                 BASE .. SEP .. "templates" .. SEP .. "template_fx.RPP")
-if not tpl_synth then
+-- Find templates/<name>.rpp whatever the case (REAPER may have re-saved it as .RPP / Template.rpp).
+local function find_template(name)
+  local dir = BASE .. SEP .. "templates"
+  local i = 0
+  while true do
+    local f = reaper.EnumerateFiles(dir, i)
+    if not f then break end
+    if f:lower() == name:lower() .. ".rpp" then return dir .. SEP .. f end
+    i = i + 1
+  end
+end
+local tpl_synth = find_template("template")
+local tpl_fx    = find_template("template_fx")
+local want_fx = false
+for _, j in ipairs(jobs) do if j.kind == "effect" then want_fx = true end end
+if not tpl_synth and not want_fx then
   reaper.ShowMessageBox("templates/template.rpp not found. Run: python3 scripts/stamp.py template --length 30", "build_masters", 0)
+  return
+end
+if want_fx and not tpl_fx then
+  reaper.ShowMessageBox("templates/template_fx.rpp not found, and build_list.tsv has effects.\n\n" ..
+    "Run:\n  python3 scripts/stamp.py signal --length 30\n  python3 scripts/stamp.py template-fx\n" ..
+    "then open template_fx.rpp, check File > Render and save it (README, EFFECTS PLUGINS).", "build_masters", 0)
   return
 end
 if not reaper.Main_SaveProjectEx then
@@ -165,7 +182,16 @@ end
 
 local counts = {}
 local i = 0
-say(string.format("build_masters: %d plugins from build_list.tsv", #jobs))
+local n_fx = 0
+for _, j in ipairs(jobs) do if j.kind == "effect" then n_fx = n_fx + 1 end end
+say(string.format("build_masters: %d plugins from build_list.tsv (%d effect, %d instrument)",
+                  #jobs, n_fx, #jobs - n_fx))
+say("  instrument template: " .. tostring(tpl_synth))
+say("  effect template:     " .. tostring(tpl_fx))
+if n_fx == 0 then
+  say("  NOTE: no row has kind=effect, so every master gets the instrument template. If these are "
+      .. "effects, re-run plugins.py scan (see the README: AUTOMATING MASTERS, step A) and list again.")
+end
 
 local function step()
   i = i + 1
@@ -183,9 +209,10 @@ local function step()
   if (exists(target) or exists(target:gsub("%.RPP$", ".rpp"))) and not OVERWRITE then
     status, detail = "skipped-exists", ""
   else
-    local tpl = (job.kind == "effect") and tpl_fx or tpl_synth
+    local tpl
+    if job.kind == "effect" then tpl = tpl_fx else tpl = tpl_synth end
     if not tpl then
-      status, detail = "no-template", "templates/template_fx.rpp missing (stamp.py signal; stamp.py template-fx)"
+      status, detail = "no-template", "no template for kind '" .. tostring(job.kind) .. "'"
     else
       reaper.Main_openProject("noprompt:" .. tpl)
       local track = reaper.GetTrack(0, 0)
@@ -198,14 +225,25 @@ local function step()
             status, detail = "fx-count", "expected exactly 1 FX on the track"
           else
             reaper.Main_SaveProjectEx(0, target, 0)
-            if not exists(target) then status, detail = "save-failed", target end
+            if not exists(target) then
+              status, detail = "save-failed", target
+            else
+              local h = io.open(target, "rb")
+              local txt = h and h:read("*a") or ""
+              if h then h:close() end
+              local has_wave, has_midi = txt:find("<SOURCE WAVE", 1, true), txt:find("<SOURCE MIDI", 1, true)
+              if (job.kind == "effect" and not has_wave) or (job.kind ~= "effect" and not has_midi) then
+                os.remove(target)
+                status, detail = "wrong-template", "saved master has the wrong kind of item; removed it"
+              end
+            end
           end
         end
       end
     end
   end
   counts[status] = (counts[status] or 0) + 1
-  say(string.format("[%d/%d] %-14s %-36s %s", i, #jobs, status, job.master, detail))
+  say(string.format("[%d/%d] %-14s %-36s %-10s %s", i, #jobs, status, job.master, job.kind, detail))
   reaper.defer(step)   -- one plugin per cycle keeps REAPER responsive; closing the script stops the run
 end
 
