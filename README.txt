@@ -16,6 +16,10 @@ FOLDER LAYOUT (run every command from inside synth-bench/)
     effects.txt        older alternative: effect plugin names, one per line (no categories)
     tags.csv           optional: "synth,tag,project" rows; ranks synths per tag
     scripts/           run_bench.py  analyze.py  stamp.py  naming.py (shared name parser)
+                       plugins.py  build_masters.lua  (optional: build masters from a plugin folder)
+    plugins.tsv        optional: catalog made by plugins.py scan (one row per plugin, with folder tags)
+    build_list.tsv     optional: the plugins build_masters.lua will build (made by plugins.py list)
+    aliases.csv        optional: file_stem,master_name, to keep names you already use in results
     templates/         template.rpp (synths), template_fx.rpp (effects), both plugin-free
     signals/           fx_test.wav  (test audio for effects; made by stamp.py signal)
     masters/           YOU create: one project per synth config (see step 3)
@@ -179,6 +183,8 @@ STEP 6. RUN THE BENCHMARK
     --length 30        must match the stamped length
     --only Serum       run only projects whose name contains "Serum"
                        (the baseline is always included)
+    --folder Reverb    run only plugins filed under that folder in plugins.tsv (repeatable;
+    --kind effect      a/b paths work, e.g. Dynamics/Compressors). See AUTOMATING MASTERS below.
   Rough time: about 4 to 6 seconds per render, so
   projects x runs x 5 s. (21 projects x 3 runs is about 5 minutes.)
 
@@ -403,6 +409,102 @@ STEP 7. ANALYSE
     HTML_REPORT = True        write results/report.html
 
 --------------------------------------------------------------------------
+AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
+--------------------------------------------------------------------------
+  If your plugins are sorted into folders, the folder tree can fill effects.csv and tags.csv,
+  build the BASE masters (step 3) for you, and let you test one folder at a time. Condition
+  masters (Synth__mode=...) are still made by hand. Everything here is optional; the manual
+  steps above work as before.
+
+  Example layout (any depth; the top-level folder decides instrument or effect):
+    Plugins/
+      Instruments/Synthesizers/Analog/Diva.vst3
+      Instruments/Synthesizers/Deep Designers/Serum2.vst3
+      Audio Effects/Dynamics/Compressors/FabFilter Pro-C 2.vst3
+      Audio Effects/Reverb/ValhallaRoom.vst3
+
+  STEP A. SCAN THE FOLDER
+    python3 scripts/plugins.py scan /path/to/Plugins
+    Writes plugins.tsv: one row per plugin with kind (instrument/effect), the cleaned master
+    name, category, group, and every folder tag. Rules:
+      - Anything under "Audio Effects" is an effect; everything else is an instrument.
+        Use --fx-top "Name" if your effects folder is called something else.
+      - category = the deepest folder; group = its parent (blank if there is only one level).
+        Audio Effects/Dynamics/Compressors/X  ->  category compressors, group dynamics
+      - Names are cleaned to what stamp.py accepts: spaces become hyphens, other odd characters
+        are dropped, and underscores become hyphens ("FabFilter Pro-C 2" -> FabFilter-Pro-C-2).
+      - A plugin filed in two folders (or as both .vst3 and .vst) becomes ONE master: the first
+        folder decides its category, and VST3 is preferred over VST2. The scan prints a note.
+      - Plugin bundles and symlinks are treated as plugins and never opened.
+    Add --write-effects to (over)write effects.csv with effect,category,group,vendor. The old
+    file is saved as effects.csv.bak, vendor values for names that still match are kept, and
+    your hand-typed categories ARE replaced by the folder names.
+    Add --write-tags to add a tags.csv row (synth,tag,) for each instrument, using its deepest
+    folder (--tag-depth all gives one tag per folder level). Existing rows, including ones with
+    a project such as mode=granular, are kept, and the old file is saved as tags.csv.bak. Tags
+    become Type chips in report.html, so scan only the folders that describe sounds.
+    Names that must match results you already have (e.g. Dune-3 instead of DUNE3): put them in
+    aliases.csv, one "file_stem,master_name" row each, before scanning:
+      file_stem,master_name
+      DUNE3,Dune-3
+      FabFilter Pro-Q 3,Pro-Q-3
+
+  STEP B. CHOOSE WHAT TO BUILD
+    python3 scripts/plugins.py list --folder Reverb --missing
+    Writes build_list.tsv and shows the first 15 rows.
+      --folder NAME    plugins filed under that folder; repeat for several (any match counts).
+                       "Dynamics/Compressors" means folder Dynamics then folder Compressors.
+                       Matching ignores case, spaces and punctuation ("Clippers:Shapers" works).
+      --kind effect    only effects (or: instrument)
+      --missing        skip plugins that already have masters/<name>.rpp
+      --names          just print the names instead of writing build_list.tsv
+    Start with something small (--folder Compressors) to check that everything loads.
+    Sampler, drum and rompler plugins load no content at their default state, so they render
+    silence and give meaningless loads. For synths, --folder Synthesizers --kind instrument
+    avoids them.
+
+  STEP C. BUILD THE MASTERS IN REAPER
+    Instruments need templates/template.rpp; effects also need templates/template_fx.rpp and
+    signals/fx_test.wav (see EFFECTS PLUGINS below).
+    1. Open REAPER with a new, empty project. The script discards whatever is open without
+       asking.
+    2. Actions > Show action list > New action > Load ReaScript..., choose
+       scripts/build_masters.lua, then run it. Keep the file inside synth-bench/scripts/.
+    3. For each row it opens the template, adds the plugin, checks REAPER loaded the plugin
+       you meant, and saves masters/<name>.RPP. The plugin stays at the state it loads with;
+       nothing is switched off or tuned, so this is the plain "default preset" base master.
+       It processes one plugin at a time and REAPER stays responsive. Closing the script
+       stops the run.
+    4. Read masters_build.log (and the console). Each row ends with a status:
+         ok              saved
+         skipped-exists  master already exists (set OVERWRITE = true at the top to rebuild)
+         not-found       REAPER has no plugin by that name; check it is in REAPER's VST paths
+                         and was scanned (Preferences > Plug-ins > VST)
+         fuzzy-skipped   REAPER only found a longer name (e.g. "Serum" matched "Serum 2"), so
+                         nothing was saved. Fix the name via aliases.csv, or set
+                         ALLOW_FUZZY = true at the top to accept these
+         fx-count / save-failed / no-template   see the detail on the row
+    Plugins that open a licence or login window on first load stall the script until you
+    close the window. Plugins that need REAPER to scan them first will show up as not-found.
+    Scan the VST folders in REAPER (Preferences > Plug-ins > VST > Re-scan) before running.
+
+    Masters for monophonic synths still need their name added to monos.txt, as in step 3.
+    Tip: check a couple of the new masters by hand (step 5) before building a whole folder.
+
+  STEP D. STAMP AND RUN ONE FOLDER AT A TIME
+    python3 scripts/stamp.py stamp --render-dir /tmp/bench_out --length 30
+    caffeinate -i python3 scripts/run_bench.py --runs 3 --length 30 --render-dir /tmp/bench_out --folder Reverb
+    --folder / --kind pick plugins by their folder in plugins.tsv, then run only those that have
+    stamped projects (the baselines are always included). It stops with a message if none do.
+    It combines with --only (both must match). Results from separate runs pool in analyze.py
+    as usual, so you can work through the library folder by folder:
+      ... --folder Compressors --folder Limiters       two folders in one run
+      ... --folder Dynamics/Compressors --kind effect  a path
+    Re-scan (step A) after you add or move plugins; plugins.tsv is only read, never edited by
+    the other scripts. If you rename or move a master, the folder filter follows the name in
+    plugins.tsv, so keep the names there and in masters/ the same.
+
+--------------------------------------------------------------------------
 EFFECTS PLUGINS (reverbs, delays, compressors, ...)
 --------------------------------------------------------------------------
   Effects process audio, so they get an audio test signal instead of MIDI: a
@@ -538,6 +640,11 @@ TROUBLESHOOTING
   Heavy offline-vs-live differences
       Offline renders don't expose real-time glitching at small buffers; for
       your shortlist, also do a live stress test at your usual buffer size.
+
+QUICK REFERENCE (building masters from a plugin folder; see AUTOMATING MASTERS)
+  python3 scripts/plugins.py scan /path/to/Plugins --write-effects --write-tags
+  python3 scripts/plugins.py list --folder Reverb --missing
+  (REAPER: run scripts/build_masters.lua in an empty project)
 
 QUICK REFERENCE (after masters exist)
   source .venv/bin/activate

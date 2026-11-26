@@ -9,10 +9,17 @@ Baseline (required): _baseline__empty.rpp  (empty project, same length)
 
 Usage (from synth-bench/):
   caffeinate -i python3 scripts/run_bench.py --runs 6 --length 60 --render-dir /tmp/bench_out
+
+Run only part of the library (needs plugins.tsv from scripts/plugins.py scan):
+  ... run_bench.py --length 30 --render-dir /tmp/bench_out --folder Reverb
+  ... run_bench.py --length 30 --render-dir /tmp/bench_out --folder Compressors --folder Limiters
+  ... run_bench.py --length 30 --render-dir /tmp/bench_out --folder Dynamics/Compressors --kind effect
 """
 import argparse, csv, random, resource, subprocess, time
 from datetime import datetime
 from pathlib import Path
+
+import plugins
 
 REAPER = "/Applications/REAPER.app/Contents/MacOS/REAPER"
 
@@ -38,11 +45,24 @@ def main():
     ap.add_argument("--render-dir", help="scratch folder your projects render into (wiped between runs)")
     ap.add_argument("--timeout", type=int, default=1800)
     ap.add_argument("--only", help="substring filter on project name")
+    ap.add_argument("--folder", action="append",
+                    help="only plugins filed under this folder in plugins.tsv (name or a/b path; "
+                         "repeat for several). Combines with --only.")
+    ap.add_argument("--kind", choices=["instrument", "effect"], help="with --folder: restrict to one kind")
     a = ap.parse_args()
 
     projects = sorted(p for p in Path(a.projects).glob("*") if p.suffix.lower() == ".rpp")
     if a.only:
         projects = [p for p in projects if a.only in p.name or p.name.startswith("_baseline")]
+    if a.folder or a.kind:
+        picked = {r["master"] for r in plugins.select(plugins.read_catalog(), a.folder, a.kind)}
+        projects = [p for p in projects
+                    if p.name.startswith("_baseline") or p.stem.split("__")[0] in picked]
+        n = len({p.stem.split("__")[0] for p in projects if not p.name.startswith("_baseline")})
+        print(f"folder filter: {len(picked)} plugins in the catalog, {n} with stamped projects")
+        if n == 0:
+            raise SystemExit("Nothing to run: none of those plugins has a stamped project "
+                             "(build masters, then stamp.py stamp)")
     if not projects:
         raise SystemExit("No .rpp files found")
 
