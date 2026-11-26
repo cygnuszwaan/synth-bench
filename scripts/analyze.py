@@ -47,7 +47,7 @@ WARMUP_RUNS = 0         # leading runs per project to discard (run 0 wasn't slow
 # (workhorse max, acceptable max) of the reference load, per class. Placeholders: tune them.
 THRESHOLDS = {"poly": (0.05, 0.15), "mono": (0.02, 0.06), "fx": (0.01, 0.04)}
 HTML_REPORT = True       # also write results/report.html (interactive charts and tables)
-FILTER_FACTORS = ("mode",)  # report.html gets a row of filter chips for each of these conditions
+FILTER_FACTORS = ()  # extra condition rows for report.html (e.g. ("quality",)); mode is covered by the Type filter
 REDUNDANT_FACTOR = 2.0  # flagged if > 2x the cheapest synth with the same tag
 MIN_INCREMENT = 0.002   # interaction ratio is skipped if the parts add less load than this
 # How run-to-run spread is drawn on the ladder charts:
@@ -106,11 +106,14 @@ def rank_tags(g, out):
     look = {(r.synth, r.pname): (r.load, r.load_lo, r.load_hi) for r in g.itertuples()}
     rows, problems = [], []
     for t in tags.itertuples():
-        val = None
+        val, match = None, None
         if t.synth in cls:
             if t.project:
                 try:
                     conds = naming.parse_cond_string(t.project, default_notes(cls[t.synth]))
+                    # what the tag says, without the implied default notes: report.html uses this
+                    # to give every project that matches these conditions the tag as its type
+                    match = naming.parse_cond_string(t.project)
                 except ValueError as e:
                     problems.append(f"{t.synth} / {t.tag}: project '{t.project}': {e}")
                     continue
@@ -121,7 +124,8 @@ def rank_tags(g, out):
             problems.append(f"{t.synth} / {t.tag}: no results" + (f" for {t.project}" if t.project else ""))
             continue
         rows.append(dict(tag=t.tag, cls=cls[t.synth], synth=t.synth,
-                         project=t.project or "reference", load=val[0], lo=val[1], hi=val[2]))
+                         project=t.project or "reference", load=val[0], lo=val[1], hi=val[2],
+                         conds=match))
     if not rows:
         return None, problems
     df = pd.DataFrame(rows)
@@ -447,7 +451,7 @@ def main():
     if by_tag is not None:
         flagged = by_tag[by_tag.redundant].groupby("synth").tag.agg(", ".join)
         out["redundant_in"] = out.synth.map(flagged).fillna("")
-        by_tag.to_csv("results/by_tag.csv", index=False)
+        by_tag.drop(columns="conds").to_csv("results/by_tag.csv", index=False)
 
     out.to_csv("results/summary.csv", index=False)
     inter = pd.DataFrame(inter_all, columns=["synth", "name", "load", "base_load", "additive_pred",

@@ -68,7 +68,7 @@ def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_color
         inter=recs(inter, ["synth", "conditions", "load", "base_load", "additive_pred", "add_ratio",
                            "mult_pred", "mult_ratio", "conds"]),
         tags=recs(by_tag, ["tag", "cls", "synth", "project", "load", "lo", "hi", "rank",
-                           "x_cheapest", "redundant"]) if by_tag is not None else [],
+                           "x_cheapest", "redundant", "conds"]) if by_tag is not None else [],
         projects=recs(proj, ["synth", "conditions", "load", "load_lo", "load_hi", "rel_range", "n",
                              "spike", "conds", "over_base", "x_base"]),
         thresholds={k: list(v) for k, v in thresholds.items()},
@@ -214,10 +214,41 @@ const state = {view: hasInst ? "instruments" : "effects", on: new Set(synths), c
 for (const c of FXC) state.off.fx[c.key] = new Set();
 for (const f of FF) state.off.cond[f] = new Set();
 
-// Instrument types are the tags in tags.csv: an instrument has a type if some tag row names it,
-// whether that row is its baseline (blank project) or a mode (e.g. mode=granular).
+// Types are the tags in tags.csv, and they belong to PROJECTS, not just instruments:
+//  - a project with a mode takes that mode's type: the tag of the exact mode=X row in tags.csv
+//    (mode=va -> analog), else the mode value itself. mode=granular__unison=4 is granular.
+//  - a project with no mode takes the instrument's baseline types (tag rows with a blank project).
+//  - a tag with its own conditions (e.g. combo = mode=granular__unison=4) also applies to every project
+//    that has those conditions (notes are ignored unless the tag names them).
+//  - a project left with no type is "untyped".
+// An instrument has every type any of its projects has. Unticking a Type hides the projects that only
+// have that type, and the instruments that have no ticked type left.
+const baseTags = {}, condTags = {}, modeTags = {}, modeAny = {};
+for (const r of D.tags) {
+  if (r.cls === "fx") continue;
+  const c = r.conds || {}, ks = Object.keys(c);
+  if (!ks.length) (baseTags[r.synth] ||= new Set()).add(r.tag);
+  else (condTags[r.synth] ||= []).push({tag: r.tag, conds: c});
+  if (ks.length === 1 && c.mode != null) {
+    modeTags[r.synth + "\u0001" + c.mode] = r.tag;
+    (modeAny[c.mode] ||= new Set()).add(r.tag);
+  }
+}
+const modeType = (s, m) => modeTags[s + "\u0001" + m] ?? (modeAny[m]?.size === 1 ? [...modeAny[m]][0] : String(m));
+const matches = (tc, pc) => Object.entries(tc).every(([k, v]) => pc[k] != null && String(pc[k]) === String(v));
+const typeCache = {};
+function projTypes(s, c) {
+  const k = s + "\u0001" + JSON.stringify(Object.entries(c).sort());
+  if (typeCache[k]) return typeCache[k];
+  const out = new Set();
+  if (c.mode != null) out.add(modeType(s, c.mode)); else for (const t of baseTags[s] || []) out.add(t);
+  for (const t of condTags[s] || []) if (matches(t.conds, c)) out.add(t.tag);
+  if (!out.size) out.add(UNTYPED);
+  return typeCache[k] = out;
+}
 const typesOf = {};
-for (const r of D.tags) if (r.cls !== "fx") (typesOf[r.synth] ||= new Set()).add(r.tag);
+for (const p of D.projects) { const t = (typesOf[p.synth] ||= new Set()); for (const x of projTypes(p.synth, p.conds)) t.add(x); }
+for (const s of synths) if (!isFx(s)) { const t = (typesOf[s] ||= new Set()); for (const x of baseTags[s] || []) t.add(x); if (!t.size) t.add(UNTYPED); }
 const typeKeys = s => typesOf[s] ? [...typesOf[s]] : [UNTYPED];
 
 // Layers: view -> class -> type / category -> (what survives) -> ticked chips
@@ -229,6 +260,8 @@ const survivor = s => inView(s) && clsOK(s) && typeOK(s) && fxOK(s);
 const visible = s => survivor(s) && state.on.has(s);
 // a project passes a condition row when its level of every filtered factor is ticked
 const condOK = c => Object.entries(state.off.cond).every(([f, off]) => !off.has(c && c[f] != null ? String(c[f]) : NONE));
+// a project row (anything with .synth and .conds) passes when it has a ticked Type and its condition chips are ticked
+const projOK = r => condOK(r.conds) && (isFx(r.synth) || [...projTypes(r.synth, r.conds || {})].some(t => !state.off.type.has(t)));
 
 // A ladder is run across synths, so a project counts as a ladder step for factor f when ANY synth in
 // the current view measured f at 2+ levels with the same other conditions.
@@ -317,7 +350,7 @@ const badge = t => t ? `<span class="badge" style="background:${D.tierColors[t] 
 function renderTables() {
   const viewRows = D.summary.filter(r => inView(r.synth));
   const has = k => viewRows.some(r => r[k] != null && r[k] !== "");
-  const typeText = s => typesOf[s] ? [...typesOf[s]].sort().join(", ") : "";
+  const typeText = s => typeKeys(s).filter(t => t !== UNTYPED).sort().join(", ");
   const cols = [
     {key: "synth", label: state.view === "effects" ? "effect" : "instrument", html: r => dot(r.synth)},
     ...(state.view === "effects" ? [] : [{key: "class", label: "class"}, {key: "types", label: "type", fmt: v => v || "\u2013"}]),
@@ -343,7 +376,7 @@ function renderTables() {
     {key: "rel_range", label: "spread", num: true, fmt: v => v == null ? "\u2013" : (v * 100).toFixed(0) + "%"},
     {key: "n", label: "runs", num: true},
     {key: "spike", label: "spike", num: true, fmt: v => fmt(v, 2)},
-  ], D.projects.filter(r => visible(r.synth) && condOK(r.conds)));
+  ], D.projects.filter(r => visible(r.synth) && projOK(r)));
 }
 
 // ---------- tiers ----------
@@ -374,7 +407,7 @@ function renderTiers() {
 const DASHES = ["solid", "dash", "dot", "dashdot", "longdash"];
 function renderLadder() {
   const host = $("#ladder");
-  const rows = D.ladders.filter(r => r.factor === state.factor && visible(r.synth) && condOK(r.conds));
+  const rows = D.ladders.filter(r => r.factor === state.factor && visible(r.synth) && projOK(r));
   if (!rows.length) return empty(host, "No ladder points for the selected synths.");
   const lines = new Map();
   for (const r of rows) { if (!lines.has(r.line)) lines.set(r.line, {synth: r.synth, pts: []}); lines.get(r.line).pts.push(r); }
@@ -422,7 +455,7 @@ function heatRows() {
   const pos = [], neg = [];
   for (const t of state.cond.toLowerCase().split(/\s+/).filter(Boolean)) (t.length > 1 && t[0] === "-" ? neg : pos).push(t[0] === "-" && t.length > 1 ? t.slice(1) : t);
   const hid = [...state.hideLadders];
-  return D.heat.filter(r => visible(r.synth) && condOK(r.conds)
+  return D.heat.filter(r => visible(r.synth) && projOK(r)
     && !hid.some(f => isLadderStep(r.conds, f) && !(f === "notes" && String(r.conds.notes) === state.keepNotes))
     && pos.every(t => r.col.toLowerCase().includes(t)) && !neg.some(t => r.col.toLowerCase().includes(t)));
 }
@@ -478,7 +511,7 @@ function renderOver() {
 // ---------- interactions ----------
 function renderInter() {
   const host = $("#inter");
-  const all = D.inter.filter(r => visible(r.synth) && condOK(r.conds));
+  const all = D.inter.filter(r => visible(r.synth) && projOK(r));
   const rows = all.filter(r => r.mult_ratio != null || r.add_ratio != null);
   if (!rows.length) return empty(host, D.inter.length ? "No stacks with a ratio for the selected synths." : "No stacked projects in the results.");
   const lab = rows.map(r => r.synth + "  " + r.conditions);
@@ -531,7 +564,7 @@ function layer2Specs() {
     const t = [...new Set(synths.filter(s => !isFx(s) && clsOK(s)).flatMap(typeKeys))]
       .sort((a, b) => (a === UNTYPED) - (b === UNTYPED) || byName(a, b));
     if (!t.some(x => x !== UNTYPED)) return [];
-    return [{kind: "type", key: "type", label: "Type", hint: "an instrument passes if tags.csv gives it this type, as its baseline or as a mode",
+    return [{kind: "type", key: "type", label: "Type", hint: "filters instruments, and the ladders, heatmap, interactions and project table by each project's type",
              items: t.map(x => ({id: x, text: x === UNTYPED ? "untyped" : x}))}];
   }
   return FXC.map(c => {

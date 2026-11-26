@@ -217,27 +217,36 @@ STEP 7. ANALYSE
                      the summary columns, the ladder factors and the tag list, follows the
                      view. A tab is hidden if there is nothing to switch to.
       2. TYPE or CATEGORY
-         Instruments: a Type row with one chip per tag in tags.csv, plus "untyped" for
-                     instruments no tag row names. An instrument passes if some tags.csv
-                     row gives it that type, whether it is the baseline (blank project) or
-                     a mode (e.g. Serum-2,granular,mode=granular). So a wavetable synth that
-                     has a granular mode comes through when Type is granular, and its other
-                     projects come with it; use the mode row below to narrow to the granular
-                     ones. Only tags whose project has results count. Every tag in tags.csv
-                     becomes a Type chip, so keep tags.csv to types of sound. A Class select
-                     (poly / mono) appears next to the tabs when there are several classes.
+         Instruments: a Type row with one chip per type. Types belong to PROJECTS, and
+                     the row filters the ladders, heatmap, interactions and project table
+                     as well as the instruments:
+                       - a project with a mode has that mode's type: the tag of the
+                         mode=X row in tags.csv (mode=va -> analog), or the mode value
+                         itself if no row names it. mode=granular__unison=4 is granular.
+                       - a project with no mode (the base config, its notes ladder,
+                         unison=4, ...) has the instrument's baseline type: its tag rows
+                         with a blank project.
+                       - a tag whose project has more conditions (e.g. combo,
+                         mode=granular__unison=4) also applies to every project that has
+                         those conditions (notes ignored unless the tag names them).
+                       - a project left with no type is "untyped".
+                     An instrument has every type any of its projects has, and is shown
+                     while at least one of them is ticked. Only tags whose project has
+                     results count. Every tag in tags.csv becomes a Type chip, so keep
+                     tags.csv to types of sound. A Class select (poly / mono) appears next
+                     to the tabs when there are several classes.
          Effects:    one row per effects.csv column (category, vendor, ...). Empty cells are
                      under "uncategorised".
       3. WHAT SURVIVES
          Instrument / Effect chips for the plugins that passed layers 1 and 2 (alphabetical),
-         then one row per FILTER_FACTORS condition (default: mode) listing only the levels that
-         those plugins actually have, plus "no mode" for projects without one. A row with no
-         levels (e.g. mode, for effects) is not shown.
+         then one row per FILTER_FACTORS condition (default: none) listing only the levels
+         that those plugins actually have, plus "no <condition>" for projects without one.
     Every row has All / None, which act on the chips shown, and double-click shows only that
     chip. A plugin you untick stays unticked if a Type filter hides it and later brings it back.
-    Mode row: filters the ladders, heatmap, interactions and the project table (the summary and
-    tier bars are per plugin, so they ignore it). Other conditions can get a row too: add them
-    to FILTER_FACTORS in analyze.py, e.g. ("mode", "quality").
+    The Type row and any FILTER_FACTORS rows filter the ladders, heatmap, interactions and the
+    project table (the summary and tier bars are per plugin, so they only follow which plugins
+    have a ticked type). Other conditions can get a row: add them to FILTER_FACTORS in
+    analyze.py, e.g. ("quality",).
     Reset zoom resets the zoom on every chart.
     In the charts:
       hover         over a ladder LINE (not just its points) to see its legend name; the other
@@ -315,7 +324,7 @@ STEP 7. ANALYSE
     condition applied). Projects with no base at their notes, and the base projects
     themselves, have no row. In the report the heatmap has a "Show" selector
     (load / cost over base / x base) and a ranked bar chart under it, with "Rank top"
-    to limit it; both follow the same filters (synths, mode, hide ladder steps, text box).
+    to limit it; both follow the same filters (synths, type, hide ladder steps, text box).
 
   INTERACTIONS (results/interactions.csv, and printed after the main table)
     For each stack: load measured, the base load, and two predictions made from the
@@ -347,9 +356,10 @@ STEP 7. ANALYSE
     mode=granular__unison=4, preset=typical; old forms like mode__granular and typical also
     work). Use __ between conditions, not a comma, because it's a CSV file. Leave it blank to use the
     synth's reference load (typical, else base config).
-    In report.html each tag is also an instrument TYPE (the Type row in the header): a synth
-    is "of" a tag if it has a row for it, so a blank project means its baseline type and a
-    mode project means it can also be that type.
+    In report.html each tag is also a TYPE (the Type row in the header) for projects: a blank
+    project is the synth's baseline type, a mode project names the type of that mode's
+    projects, and a project with more conditions (mode=granular__unison=4) also tags every
+    project matching them.
     Example:
       synth,tag,project
       Vital,wavetable,

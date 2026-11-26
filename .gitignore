@@ -4,3 +4,6 @@
 /signals/
 /results/charts/
 /results/report.html
+.DS_Store
+results/.DS_Store
+scripts/.DS_Store
