@@ -24,6 +24,8 @@ Serum-2,granular,mode=granular
 Surge,analog
 Surge,fm,mode=fm
 Surge,wavetable,mode=wt
+Ultra,wavetable
+Ultra,analog,mode=va
 Vital,wavetable
 Vital,fm,mode=fm
 ZebraHZ,analog
