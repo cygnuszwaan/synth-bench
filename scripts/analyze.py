@@ -27,7 +27,15 @@ What the analysis does with conditions:
   2+ conditions    a stack: reports an additive interaction ratio (1 = costs just add,
                    >1 = worse than the parts suggest) and a multiplicative one (1 = costs
                    multiply, the natural null for things like unison x notes)
-Usage (from synth-bench/):  python3 scripts/analyze.py [--whiskers range|std]
+Outlier runs (a stall in one render inflates the spread and the whiskers, though not the median):
+  Every run is always checked, per project, against the median of all its runs. A run is flagged
+  when its CPU time is more than --outlier-k (default 3.5) robust deviations from the median
+  (1.4826 x MAD, but never less than OUTLIER_FLOOR = 2% of the median, so very steady projects
+  don't flag tiny wobbles). Needs at least --outlier-min-runs runs (default 5). If more than 40%
+  of a project's runs would be flagged the project is treated as bimodal, not as having
+  outliers, and nothing is dropped. Flagged runs are listed in results/outliers.csv.
+  By default they stay in the analysis; add --drop-outliers to leave them out.
+Usage (from synth-bench/):  python3 scripts/analyze.py [--whiskers range|std] [--drop-outliers]
 """
 import argparse, glob, re, sys
 from pathlib import Path
@@ -49,6 +57,8 @@ THRESHOLDS = {"poly": (0.05, 0.15), "mono": (0.02, 0.06), "fx": (0.01, 0.04)}
 HTML_REPORT = True       # also write results/report.html (interactive charts and tables)
 FILTER_FACTORS = ()  # extra condition rows for report.html (e.g. ("quality",)); mode is covered by the Type filter
 REDUNDANT_FACTOR = 2.0  # flagged if > 2x the cheapest synth with the same tag
+OUTLIER_FLOOR = 0.02    # robust spread is never taken below this fraction of the median (see docstring)
+OUTLIER_MAX_FRAC = 0.40 # more flagged runs than this fraction of a project's runs: bimodal, drop none
 MIN_INCREMENT = 0.002   # interaction ratio is skipped if the parts add less load than this
 # How run-to-run spread is drawn on the ladder charts:
 #   "size" = marker area grows with (max-min)/median of the runs   "bars" = min-max whiskers
@@ -303,13 +313,35 @@ def stack_interactions(synth, cls, rows, typ_row, dn):
     return recs, problems
 
 
+def flag_outliers(df, k, min_runs):
+    """Boolean Series (aligned to df): runs whose cpu_s is far from their project's median.
+    Also returns {pname: n_runs} for projects that looked bimodal and were left alone."""
+    med = df.groupby("pname").cpu_s.transform("median")
+    dev = (df.cpu_s - med).abs()
+    mad = 1.4826 * dev.groupby(df.pname).transform("median")
+    n = df.groupby("pname").cpu_s.transform("count")
+    flag = (n >= min_runs) & (dev > k * np.maximum(mad, OUTLIER_FLOOR * med))
+    frac = flag.groupby(df.pname).transform("mean")
+    bimodal = flag & (frac > OUTLIER_MAX_FRAC)
+    return flag & ~bimodal, sorted(set(df.pname[bimodal])), med, dev
+
+
 def main():
     global WHISKERS, WH_TEXT
     ap = argparse.ArgumentParser(description="Summarise benchmark results (see the docstring).")
     ap.add_argument("--whiskers", choices=["range", "std"], default=WHISKERS,
                     help="whisker lines show fastest-to-slowest run (range) or +/- 1 standard "
                          "deviation of the runs (std). Default: %(default)s")
-    WHISKERS = ap.parse_args().whiskers
+    ap.add_argument("--drop-outliers", action="store_true",
+                    help="leave clearly deviant runs out of the analysis (they are always listed in "
+                         "results/outliers.csv); see the docstring for how they are detected")
+    ap.add_argument("--outlier-k", type=float, default=3.5,
+                    help="how many robust deviations from the project's median make a run an outlier "
+                         "(lower = stricter). Default: %(default)s")
+    ap.add_argument("--outlier-min-runs", type=int, default=5,
+                    help="projects with fewer runs than this are never checked. Default: %(default)s")
+    args = ap.parse_args()
+    WHISKERS = args.whiskers
     WH_TEXT = ("plus/minus 1 standard deviation of the runs" if WHISKERS == "std"
                else "fastest to slowest run")
     files = sorted(glob.glob("results/run_*.csv"))
@@ -330,6 +362,31 @@ def main():
     if "ignored" in fx_src:
         print("note: using effects.csv; effects.txt is ignored (delete it to silence this).")
     df, conds_of, bad, n_alias = parse_projects(df, monos, effects)
+
+    flag, bimodal, med_all, dev_all = flag_outliers(df, args.outlier_k, args.outlier_min_runs)
+    outlier_note = ""
+    if flag.any():
+        o = df[flag].assign(median_cpu_s=med_all[flag], deviation_s=(df.cpu_s - med_all)[flag],
+                            dropped=args.drop_outliers)
+        o[["src", "pname", "run", "cpu_s", "median_cpu_s", "deviation_s", "dropped"]] \
+            .rename(columns={"pname": "project"}).round(3).to_csv("results/outliers.csv", index=False)
+        print(f"\nOutlier runs: {int(flag.sum())} run(s) in {o.pname.nunique()} project(s) are far from their "
+              f"project's median ({'DROPPED from' if args.drop_outliers else 'still INCLUDED in'} the analysis; "
+              f"list: results/outliers.csv)")
+        for r in o.sort_values("deviation_s", key=abs, ascending=False).head(12).itertuples():
+            print(f"  {r.pname:44s} {r.src[4:-4]} run {r.run}: {r.cpu_s:.3f}s vs median {r.median_cpu_s:.3f}s "
+                  f"({r.deviation_s:+.2f}s)")
+        if not args.drop_outliers:
+            print("  Rerun with --drop-outliers to exclude them.")
+    elif Path("results/outliers.csv").exists():
+        Path("results/outliers.csv").unlink()      # nothing flagged now: don't leave a stale list
+    if bimodal:
+        print(f"\nNote: {len(bimodal)} project(s) have a big share of runs far from the median, which looks "
+              f"like two distinct speeds rather than outliers, so none were dropped: {', '.join(bimodal[:6])}"
+              f"{' ...' if len(bimodal) > 6 else ''}")
+    if args.drop_outliers and flag.any():
+        df = df[~flag]
+        outlier_note = f"{int(flag.sum())} outlier run(s) excluded (results/outliers.csv)"
 
     g = df.groupby(["pname", "synth", "cls"], as_index=False).agg(
         wall_med=("wall_s", "median"), wall_max=("wall_s", "max"),
@@ -547,7 +604,7 @@ def main():
         try:
             offline = report.write_html("results/report.html", out, g, lad, inter, by_tag, fac_list,
                                         THRESHOLDS, TIER_COLORS, FILTER_FACTORS, fx_keys,
-                                        whiskers=WHISKERS)
+                                        whiskers=WHISKERS, note=outlier_note)
             print("\nInteractive report: results/report.html"
                   + ("" if offline else "  (needs internet to open; pip install plotly makes it "
                                         "self-contained)"))

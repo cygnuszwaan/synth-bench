@@ -1,0 +1,6 @@
+src,project,run,cpu_s,median_cpu_s,deviation_s,dropped
+run_20261128_140336.csv,uaudio-teletronix-la-2a-tc__preset=typical,2,8.281,7.265,1.016,True
+run_20261128_140336.csv,ERA4-VoiceLeveler__preset=typical,2,9.173,8.125,1.048,True
+run_20261128_140336.csv,MUltraMaximizer__preset=typical,2,6.397,5.806,0.591,True
+run_20261128_140336.csv,Presswerk__preset=typical,2,6.262,5.49,0.772,True
+run_20261128_141715.csv,Presswerk__preset=typical,2,6.457,5.49,0.968,True

@@ -38,7 +38,7 @@ def recs(df, cols):
 
 
 def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_colors,
-               filter_factors=(), fx_cols=(), whiskers="range"):
+               filter_factors=(), fx_cols=(), whiskers="range", note=""):
     """out: summary table; g: per-project table; lad: ladder points; inter: stack interactions;
     by_tag: tag ranking or None; factors: [(factor, [(level, n_projects), ...]), ...]."""
     script, offline = plotly_script()
@@ -79,7 +79,7 @@ def write_html(path, out, g, lad, inter, by_tag, factors, thresholds, tier_color
                        for k, v in factors if k in filter_factors],
         meta=dict(generated=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
                   length=float(g.length.iloc[0]) if len(g) else None,
-                  projects=int(len(g)), offline=offline, whiskers=whiskers),
+                  projects=int(len(g)), offline=offline, whiskers=whiskers, note=note),
     )
     blob = json.dumps(data).replace("</", "<\\/")
     vals = {"PLOTLY": script, "DATA": blob, "JS": APP_JS}
@@ -689,7 +689,7 @@ window.addEventListener("error", e => showErr(e.error || e.message));
 
 function init() {
   const m = D.meta;
-  $("#meta").textContent = `Generated ${m.generated} \u00b7 ${m.projects} projects` + (m.length ? ` \u00b7 ${m.length}s signal` : "")
+  $("#meta").textContent = `Generated ${m.generated} \u00b7 ${m.projects} projects` + (m.length ? ` \u00b7 ${m.length}s signal` : "") + (m.note ? ` \u00b7 ${m.note}` : "")
     + (m.offline ? "" : " \u00b7 charts load plotly.js from the internet (pip install plotly to make this file work offline)");
   $("#tierkey").innerHTML = Object.entries(D.tierColors).map(([t, c]) => `<span><span class="dot" style="background:${c}"></span> ${esc(t)}</span>`).join("");
 
