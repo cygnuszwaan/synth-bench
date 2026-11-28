@@ -1,68 +1,68 @@
 master	kind	format	fx_name	category	group	tags	folders	alt_formats
 ++bubbler	effect	vst3	++bubbler	granular		audio-effects|granular	Audio Effects/Granular	
-++chebyshev	effect	vst3	++chebyshev	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-++compand	effect	vst3	++compand	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
-++decimate	effect	vst3	++decimate	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+++chebyshev	effect	vst3	++chebyshev	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+++compand	effect	vst3	++compand	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+++decimate	effect	vst3	++decimate	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 ++flipper	effect	vst3	++flipper	temporal		audio-effects|temporal	Audio Effects/Temporal	
-++matrix	effect	vst3	++matrix	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-++phasor	effect	vst3	++phasor	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-++pitchdelay	effect	vst3	++pitchdelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+++matrix	effect	vst3	++matrix	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+++phasor	effect	vst3	++phasor	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+++pitchdelay	effect	vst3	++pitchdelay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
 Aaltoverb-2	effect	vst3	Aaltoverb 2	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Absynth-5-FX	effect	vst	Absynth 5 FX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Absynth-5-FX-Surround	effect	vst	Absynth 5 FX Surround	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Absynth-6-FX	effect	vst3	Absynth 6 FX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 ADAPTIVERB-VST	effect	vst	ADAPTIVERB VST	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Airwindows-Consolidated	effect	vst3	Airwindows Consolidated	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-AllRADecoder	effect	vst	AllRADecoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Antresol	effect	vst3	Antresol	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-apQualizr2	effect	vst3	apQualizr2	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
-apShaper	effect	vst3	apShaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+AllRADecoder	effect	vst	AllRADecoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Antresol	effect	vst3	Antresol	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+apQualizr2	effect	vst3	apQualizr2	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+apShaper	effect	vst3	apShaper	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
 Artillery2	effect	vst3	Artillery2	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Backmask	effect	vst3	Backmask	temporal		audio-effects|temporal	Audio Effects/Temporal	
-Beatgrader	effect	vst3	Beatgrader	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Beatgrader	effect	vst3	Beatgrader	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 Bin-Scrambler	effect	vst3	Bin Scrambler	spectral		audio-effects|spectral	Audio Effects/Spectral	
-BinauralDecoder	effect	vst	BinauralDecoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Bite	effect	vst3	Bite	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-bloom	effect	vst3	bloom	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+BinauralDecoder	effect	vst	BinauralDecoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Bite	effect	vst3	Bite	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+bloom	effect	vst3	bloom	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 BreadSlicer	effect	vst3	BreadSlicer	glitch		audio-effects|glitch	Audio Effects/Glitch	
 Brusfri	effect	vst3	Brusfri	restoration		audio-effects|restoration	Audio Effects/Restoration	
-bx-2098-EQ	effect	vst3	bx_2098 EQ	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+bx-2098-EQ	effect	vst3	bx_2098 EQ	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
 bx-aura	effect	vst3	bx_aura	reverb		audio-effects|reverb	Audio Effects/Reverb	
-bx-bassdude	effect	vst3	bx_bassdude	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
-bx-blackdist2	effect	vst3	bx_blackdist2	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-bassdude	effect	vst3	bx_bassdude	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-blackdist2	effect	vst3	bx_blackdist2	harmonic	stompboxes	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
 bx-boom-V3	effect	vst3	bx_boom V3	exciters		audio-effects|exciters	Audio Effects/Exciters	
-bx-clipper	effect	vst3	bx_clipper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+bx-clipper	effect	vst3	bx_clipper	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
 bx-console-SSL-9000-J	effect	vst3	bx_console SSL 9000 J	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
-bx-distorange	effect	vst3	bx_distorange	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
-bx-greenscreamer	effect	vst3	bx_greenscreamer	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
-bx-megadual	effect	vst3	bx_megadual	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
-bx-megasingle	effect	vst3	bx_megasingle	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
-bx-metal2	effect	vst3	bx_metal2	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
-bx-rockergain100	effect	vst3	bx_rockergain100	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
-bx-rockrack-V3	effect	vst3	bx_rockrack V3	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-distorange	effect	vst3	bx_distorange	harmonic	stompboxes	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-greenscreamer	effect	vst3	bx_greenscreamer	harmonic	stompboxes	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-megadual	effect	vst3	bx_megadual	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-megasingle	effect	vst3	bx_megasingle	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-metal2	effect	vst3	bx_metal2	harmonic	stompboxes	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-rockergain100	effect	vst3	bx_rockergain100	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+bx-rockrack-V3	effect	vst3	bx_rockrack V3	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
 bx-rooMS	effect	vst3	bx_rooMS	reverb		audio-effects|reverb	Audio Effects/Reverb	
-bx-shredspread	effect	vst3	bx_shredspread	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-bx-stereomaker	effect	vst3	bx_stereomaker	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+bx-shredspread	effect	vst3	bx_shredspread	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+bx-stereomaker	effect	vst3	bx_stereomaker	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
 bx-subsynth	effect	vst3	bx_subsynth	exciters		audio-effects|exciters	Audio Effects/Exciters	
-bx-townhouse-Buss-Compressor	effect	vst3	bx_townhouse Buss Compressor	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-bx-yellowdrive	effect	vst3	bx_yellowdrive	stompboxes	harmonic	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
+bx-townhouse-Buss-Compressor	effect	vst3	bx_townhouse Buss Compressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+bx-yellowdrive	effect	vst3	bx_yellowdrive	harmonic	stompboxes	audio-effects|harmonic|stompboxes	Audio Effects/Harmonic/Stompboxes	
 Cardinal	effect	vst3	Cardinal	modular		audio-effects|modular	Audio Effects/Modular	
 CardinalFX	effect	vst3	CardinalFX	modular		audio-effects|modular|multi-fx	Audio Effects/Modular ; Audio Effects/Multi-FX	
-Carve-EQ	effect	vst3	Carve EQ	graphic	eq	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
+Carve-EQ	effect	vst3	Carve EQ	eq	graphic	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
 Cataract	effect	vst	Cataract	glitch		audio-effects|glitch	Audio Effects/Glitch	
-Choral	effect	vst3	Choral	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+Choral	effect	vst3	Choral	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
 Clear	effect	vst3	Clear	restoration		audio-effects|restoration	Audio Effects/Restoration	
-Clearmountains-Phases	effect	vst3	Clearmountains Phases	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-Cluster-Delay	effect	vst3	Cluster Delay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-ColourCopy	effect	vst3	ColourCopy	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+Clearmountains-Phases	effect	vst3	Clearmountains Phases	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+Cluster-Delay	effect	vst3	Cluster Delay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+ColourCopy	effect	vst3	ColourCopy	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
 Comet	effect	vst3	Comet	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Concatenator	effect	vst3	Concatenator	resynthesis		audio-effects|resynthesis	Audio Effects/Resynthesis	
 Convex	effect	vst3	Convex	glitch		audio-effects|glitch	Audio Effects/Glitch	
 Convoluter	effect	vst	Convoluter	convolution		audio-effects|convolution	Audio Effects/Convolution	
-CoordinateConverter	effect	vst	CoordinateConverter	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+CoordinateConverter	effect	vst	CoordinateConverter	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 Corkscrew	effect	vst	Corkscrew	spectral		audio-effects|spectral	Audio Effects/Spectral	
-Crisp	effect	vst3	Crisp	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-crunchrr	effect	vst3	crunchrr	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Crisp	effect	vst3	Crisp	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+crunchrr	effect	vst3	crunchrr	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 Cryogen	effect	vst3	Cryogen	glitch		audio-effects|glitch	Audio Effects/Glitch	
 Crystalline	effect	vst3	Crystalline	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Crystallizer	effect	vst	Crystallizer	granular		audio-effects|granular	Audio Effects/Granular	
@@ -70,121 +70,121 @@ DAWCassette	effect	vst3	DAWCassette	analog-emulation		audio-effects|analog-emula
 DAWLP	effect	vst3	DAWLP	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
 Dear-Reality-Exoverb-MICRO	effect	vst3	Dear Reality Exoverb MICRO	reverb		audio-effects|reverb	Audio Effects/Reverb	
 dearVR-PRO-2	effect	vst3	dearVR PRO 2	reverb		audio-effects|reverb	Audio Effects/Reverb	
-Decapitator	effect	vst	Decapitator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-Decimort2	effect	vst3	Decimort2	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-DeClick2	effect	vst3	DeClick2	acon-digital	restoration	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
-DeClip2	effect	vst3	DeClip2	acon-digital	restoration	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
-Deelay	effect	vst3	Deelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+Decapitator	effect	vst	Decapitator	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Decimort2	effect	vst3	Decimort2	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+DeClick2	effect	vst3	DeClick2	restoration	acon-digital	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
+DeClip2	effect	vst3	DeClip2	restoration	acon-digital	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
+Deelay	effect	vst3	Deelay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
 DeepSpace	effect	vst3	DeepSpace	glitch		audio-effects|glitch	Audio Effects/Glitch	
-Degrader	effect	vst3	Degrader	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-DeHum2	effect	vst3	DeHum2	acon-digital	restoration	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
-Delay-ETERNITY	effect	vst3	Delay ETERNITY	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-DeNoise2	effect	vst3	DeNoise2	acon-digital	restoration	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
-destruqtor	effect	vst3	destruqtor	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-Devastor2	effect	vst3	Devastor2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Devil-Loc-Deluxe	effect	vst	Devil-Loc_Deluxe	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-Digitalis	effect	vst3	Digitalis	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-Diopser	effect	vst3	Diopser	allpass	filters	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
-DirectionalCompressor	effect	vst	DirectionalCompressor	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-DirectivityShaper	effect	vst	DirectivityShaper	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Dirt	effect	vst3	Dirt	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Disperser	effect	vst3	Disperser	allpass	filters	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
-Dist-COLDFIRE	effect	vst3	Dist COLDFIRE	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Dist-TUBE-CULTURE	effect	vst3	Dist TUBE-CULTURE	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-DistanceCompensator	effect	vst	DistanceCompensator	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Driver	effect	vst3	Driver	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-DualDelay	effect	vst	DualDelay	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Dubstation-2	effect	vst3	Dubstation 2	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+Degrader	effect	vst3	Degrader	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+DeHum2	effect	vst3	DeHum2	restoration	acon-digital	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
+Delay-ETERNITY	effect	vst3	Delay ETERNITY	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+DeNoise2	effect	vst3	DeNoise2	restoration	acon-digital	audio-effects|restoration|acon-digital	Audio Effects/Restoration/Acon Digital	
+destruqtor	effect	vst3	destruqtor	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Devastor2	effect	vst3	Devastor2	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Devil-Loc-Deluxe	effect	vst	Devil-Loc_Deluxe	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Digitalis	effect	vst3	Digitalis	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Diopser	effect	vst3	Diopser	filters	allpass	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
+DirectionalCompressor	effect	vst	DirectionalCompressor	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+DirectivityShaper	effect	vst	DirectivityShaper	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Dirt	effect	vst3	Dirt	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Disperser	effect	vst3	Disperser	filters	allpass	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
+Dist-COLDFIRE	effect	vst3	Dist COLDFIRE	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Dist-TUBE-CULTURE	effect	vst3	Dist TUBE-CULTURE	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+DistanceCompensator	effect	vst	DistanceCompensator	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Driver	effect	vst3	Driver	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+DualDelay	effect	vst	DualDelay	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Dubstation-2	effect	vst3	Dubstation 2	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
 Dumpster-Fire	effect	vst3	Dumpster Fire	pitch		audio-effects|pitch	Audio Effects/Pitch	
-EchoBoy	effect	vst	EchoBoy	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+EchoBoy	effect	vst	EchoBoy	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
 EffectRack	effect	vst	EffectRack	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Effectrix	effect	vst3	Effectrix	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 Efx-FRAGMENTS	effect	vst3	Efx FRAGMENTS	granular		audio-effects|granular	Audio Effects/Granular	
 Efx-REFRACT	effect	vst3	Efx REFRACT	doubler		audio-effects|doubler	Audio Effects/Doubler	
 ElastiquePitchV2	effect	vst3	ElastiquePitchV2	pitch		audio-effects|pitch	Audio Effects/Pitch	
 Emergence	effect	vst3	Emergence	granular		audio-effects|granular	Audio Effects/Granular	
-EnergyVisualizer	effect	vst	EnergyVisualizer	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-entropyeq	effect	vst3	entropyeq	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
-ERA4-VoiceLeveler	effect	vst	ERA4_VoiceLeveler	levelers	dynamics	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
-Esspresso	effect	vst3	Esspresso	deessers	dynamics	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
-FabFilter-Pro-C-2	effect	vst3	FabFilter Pro-C 2	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-FabFilter-Pro-DS	effect	vst3	FabFilter Pro-DS	deessers	dynamics	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
-FabFilter-Pro-G	effect	vst3	FabFilter Pro-G	expanders	dynamics	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
-FabFilter-Pro-L-2	effect	vst3	FabFilter Pro-L 2	limiters	dynamics	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
-FabFilter-Pro-MB	effect	vst3	FabFilter Pro-MB	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
-FabFilter-Pro-Q-3	effect	vst3	FabFilter Pro-Q 3	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
-FabFilter-Pro-Q-4	effect	vst3	FabFilter Pro-Q 4	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+EnergyVisualizer	effect	vst	EnergyVisualizer	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+entropyeq	effect	vst3	entropyeq	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+ERA4-VoiceLeveler	effect	vst	ERA4_VoiceLeveler	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+Esspresso	effect	vst3	Esspresso	dynamics	deessers	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
+FabFilter-Pro-C-2	effect	vst3	FabFilter Pro-C 2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+FabFilter-Pro-DS	effect	vst3	FabFilter Pro-DS	dynamics	deessers	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
+FabFilter-Pro-G	effect	vst3	FabFilter Pro-G	dynamics	expanders	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
+FabFilter-Pro-L-2	effect	vst3	FabFilter Pro-L 2	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+FabFilter-Pro-MB	effect	vst3	FabFilter Pro-MB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+FabFilter-Pro-Q-3	effect	vst3	FabFilter Pro-Q 3	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+FabFilter-Pro-Q-4	effect	vst3	FabFilter Pro-Q 4	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 FabFilter-Pro-R	effect	vst3	FabFilter Pro-R	reverb		audio-effects|reverb	Audio Effects/Reverb	
 FabFilter-Pro-R-2	effect	vst3	FabFilter Pro-R 2	reverb		audio-effects|reverb	Audio Effects/Reverb	
-FabFilter-Saturn	effect	vst3	FabFilter Saturn	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-FabFilter-Saturn-2	effect	vst3	FabFilter Saturn 2	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-FabFilter-Timeless-2	effect	vst3	FabFilter Timeless 2	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-FabFilter-Timeless-3	effect	vst3	FabFilter Timeless 3	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-FabFilter-Volcano-3	effect	vst3	FabFilter Volcano 3	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-Faturator	effect	vst3	Faturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-Fazortan2	effect	vst3	Fazortan2	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-FdnReverb	effect	vst	FdnReverb	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Filter-MS-20	effect	vst3	Filter MS-20	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-Filterverse	effect	vst3	Filterverse	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
-Filtron	effect	vst3	Filtron	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
-filtrr	effect	vst3	filtrr	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-FirePresser	effect	vst3	FirePresser	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-Flair	effect	vst3	Flair	flanger	modulation	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
-Flex-Chorus	effect	vst3	Flex Chorus	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+FabFilter-Saturn	effect	vst3	FabFilter Saturn	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+FabFilter-Saturn-2	effect	vst3	FabFilter Saturn 2	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+FabFilter-Timeless-2	effect	vst3	FabFilter Timeless 2	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+FabFilter-Timeless-3	effect	vst3	FabFilter Timeless 3	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+FabFilter-Volcano-3	effect	vst3	FabFilter Volcano 3	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+Faturator	effect	vst3	Faturator	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Fazortan2	effect	vst3	Fazortan2	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+FdnReverb	effect	vst	FdnReverb	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Filter-MS-20	effect	vst3	Filter MS-20	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+Filterverse	effect	vst3	Filterverse	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+Filtron	effect	vst3	Filtron	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+filtrr	effect	vst3	filtrr	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+FirePresser	effect	vst3	FirePresser	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Flair	effect	vst3	Flair	modulation	flanger	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
+Flex-Chorus	effect	vst3	Flex Chorus	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
 FM8-FX	effect	vst	FM8 FX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Formant	effect	vst3	Formant	formant	filters	audio-effects|filters|formant	Audio Effects/Filters/Formant	
+Formant	effect	vst3	Formant	filters	formant	audio-effects|filters|formant	Audio Effects/Filters/Formant	
 FractureXT	effect	vst3	FractureXT	glitch		audio-effects|glitch	Audio Effects/Glitch	
 Freak	effect	vst3	Freak	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
 Frequency-Magnet	effect	vst3	Frequency Magnet	spectral		audio-effects|spectral	Audio Effects/Spectral	
 Frequency-Shifter	effect	vst3	Frequency Shifter	spectral		audio-effects|spectral	Audio Effects/Spectral	
-Fuse-Compressor	effect	vst3	Fuse Compressor	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+Fuse-Compressor	effect	vst3	Fuse Compressor	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
 FutzBox	effect	vst3	FutzBox	convolution		audio-effects|convolution	Audio Effects/Convolution	
 FX-Omnisphere	effect	vst3	FX-Omnisphere	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Gatekeeper	effect	vst3	Gatekeeper	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
-GClip	effect	vst	GClip	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+GClip	effect	vst	GClip	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
 Glitch2	effect	vst3	Glitch2	glitch		audio-effects|glitch	Audio Effects/Glitch	
-Godfazer	effect	vst3	Godfazer	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+Godfazer	effect	vst3	Godfazer	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
 Graindad	effect	vst3	Graindad	granular		audio-effects|granular	Audio Effects/Granular	
-GranularEncoder	effect	vst	GranularEncoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+GranularEncoder	effect	vst	GranularEncoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 GRM-Tools-Atelier	effect	vst3	GRM Tools Atelier	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Guitar-Rig-5	effect	vst	Guitar Rig 5	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+Guitar-Rig-5	effect	vst	Guitar Rig 5	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
 HarmonicAdder	effect	vst	HarmonicAdder	spectral		audio-effects|spectral	Audio Effects/Spectral	
-Hate	effect	vst3	Hate	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Hybrid-Filter	effect	vst3	Hybrid Filter	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+Hate	effect	vst3	Hate	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Hybrid-Filter	effect	vst3	Hybrid Filter	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
 Hysteresis	effect	vst3	Hysteresis	glitch		audio-effects|glitch	Audio Effects/Glitch	
 I-Wish	effect	vst3	I Wish	pitch		audio-effects|pitch	Audio Effects/Pitch	
 IFEA-Fusion	effect	vst3	IFEA - Fusion	resynthesis		audio-effects|resynthesis	Audio Effects/Resynthesis	
 Infiltrator	effect	vst3	Infiltrator	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
-INTENSITY-VST	effect	vst	INTENSITY VST	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+INTENSITY-VST	effect	vst	INTENSITY VST	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
 iZotope-Stutter-Edit	effect	vst3	iZotope Stutter Edit	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
-iZotope-Trash-2	effect	vst3	iZotope Trash 2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-kHs-Bitcrush	effect	vst3	kHs Bitcrush	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-kHs-Chorus	effect	vst3	kHs Chorus	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
-kHs-Clipper	effect	vst3	kHs Clipper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-kHs-Comb-Filter	effect	vst3	kHs Comb Filter	comb	filters	audio-effects|filters|comb	Audio Effects/Filters/Comb	
-kHs-Compactor	effect	vst3	kHs Compactor	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-kHs-Compressor	effect	vst3	kHs Compressor	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+iZotope-Trash-2	effect	vst3	iZotope Trash 2	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Bitcrush	effect	vst3	kHs Bitcrush	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+kHs-Chorus	effect	vst3	kHs Chorus	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+kHs-Clipper	effect	vst3	kHs Clipper	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+kHs-Comb-Filter	effect	vst3	kHs Comb Filter	filters	comb	audio-effects|filters|comb	Audio Effects/Filters/Comb	
+kHs-Compactor	effect	vst3	kHs Compactor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+kHs-Compressor	effect	vst3	kHs Compressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 kHs-Convolver	effect	vst3	kHs Convolver	convolution		audio-effects|convolution	Audio Effects/Convolution	
-kHs-Delay	effect	vst3	kHs Delay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-kHs-Distortion	effect	vst3	kHs Distortion	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-kHs-Dual-Delay	effect	vst3	kHs Dual Delay	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
-kHs-Dynamics	effect	vst3	kHs Dynamics	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
-kHs-Ensemble	effect	vst3	kHs Ensemble	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
-kHs-Filter	effect	vst3	kHs Filter	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
-kHs-Flanger	effect	vst3	kHs Flanger	flanger	modulation	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
-kHs-Formant-Filter	effect	vst3	kHs Formant Filter	formant	filters	audio-effects|filters|formant	Audio Effects/Filters/Formant	
+kHs-Delay	effect	vst3	kHs Delay	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+kHs-Distortion	effect	vst3	kHs Distortion	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Dual-Delay	effect	vst3	kHs Dual Delay	delay	multitap	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
+kHs-Dynamics	effect	vst3	kHs Dynamics	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+kHs-Ensemble	effect	vst3	kHs Ensemble	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+kHs-Filter	effect	vst3	kHs Filter	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+kHs-Flanger	effect	vst3	kHs Flanger	modulation	flanger	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
+kHs-Formant-Filter	effect	vst3	kHs Formant Filter	filters	formant	audio-effects|filters|formant	Audio Effects/Filters/Formant	
 kHs-Frequency-Shifter	effect	vst3	kHs Frequency Shifter	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-kHs-Ladder-Filter	effect	vst3	kHs Ladder Filter	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-kHs-Limiter	effect	vst3	kHs Limiter	limiters	dynamics	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
-kHs-Nonlinear-Filter	effect	vst3	kHs Nonlinear Filter	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-kHs-Phase-Distortion	effect	vst3	kHs Phase Distortion	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-kHs-Phaser	effect	vst3	kHs Phaser	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+kHs-Ladder-Filter	effect	vst3	kHs Ladder Filter	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+kHs-Limiter	effect	vst3	kHs Limiter	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+kHs-Nonlinear-Filter	effect	vst3	kHs Nonlinear Filter	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+kHs-Phase-Distortion	effect	vst3	kHs Phase Distortion	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+kHs-Phaser	effect	vst3	kHs Phaser	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
 kHs-Pitch-Shifter	effect	vst3	kHs Pitch Shifter	pitch		audio-effects|pitch	Audio Effects/Pitch	
 kHs-Resonator	effect	vst3	kHs Resonator	resonators		audio-effects|resonators	Audio Effects/Resonators	
 kHs-Reverb	effect	vst3	kHs Reverb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 kHs-Reverser	effect	vst3	kHs Reverser	temporal		audio-effects|temporal	Audio Effects/Temporal	
-kHs-Ring-Mod	effect	vst3	kHs Ring Mod	am	modulation	audio-effects|modulation|am	Audio Effects/Modulation/AM	
-kHs-Shaper	effect	vst3	kHs Shaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+kHs-Ring-Mod	effect	vst3	kHs Ring Mod	modulation	am	audio-effects|modulation|am	Audio Effects/Modulation/AM	
+kHs-Shaper	effect	vst3	kHs Shaper	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
 kHs-Tape-Stop	effect	vst3	kHs Tape Stop	temporal		audio-effects|temporal	Audio Effects/Temporal	
 kHs-Trance-Gate	effect	vst3	kHs Trance Gate	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 kHs-Transient-Shaper	effect	vst3	kHs Transient Shaper	transient		audio-effects|transient	Audio Effects/Transient	
@@ -194,175 +194,175 @@ LengthSeparator	effect	vst	LengthSeparator	spectral		audio-effects|spectral	Audi
 LittleAlterBoy	effect	vst	LittleAlterBoy	pitch		audio-effects|pitch	Audio Effects/Pitch	
 Looperator	effect	vst3	Looperator	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 Love	effect	vst3	Love	reverb		audio-effects|reverb	Audio Effects/Reverb	
-MAGC	effect	vst3	MAGC	levelers	dynamics	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
-MAmp	effect	vst3	MAmp	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MAGC	effect	vst3	MAGC	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MAmp	effect	vst3	MAmp	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
 Mangle	effect	vst3	Mangle	glitch		audio-effects|glitch	Audio Effects/Glitch	
 Manipulator	effect	vst3	Manipulator	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-MatrixMultiplier	effect	vst	MatrixMultiplier	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-MAutoDynamicEq	effect	vst3	MAutoDynamicEq	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
-MAutoEqualizer	effect	vst3	MAutoEqualizer	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
-MAutoEqualizerLP	effect	vst3	MAutoEqualizerLP	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
-MAutopan	effect	vst3	MAutopan	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-MAutopanMB	effect	vst3	MAutopanMB	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MatrixMultiplier	effect	vst	MatrixMultiplier	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+MAutoDynamicEq	effect	vst3	MAutoDynamicEq	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+MAutoEqualizer	effect	vst3	MAutoEqualizer	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+MAutoEqualizerLP	effect	vst3	MAutoEqualizerLP	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+MAutopan	effect	vst3	MAutopan	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MAutopanMB	effect	vst3	MAutopanMB	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
 MAutoPitch	effect	vst3	MAutoPitch	pitch		audio-effects|pitch	Audio Effects/Pitch	
-MAutoStereoFix	effect	vst3	MAutoStereoFix	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-MAutoVolume	effect	vst3	MAutoVolume	levelers	dynamics	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
-MBandPass	effect	vst3	MBandPass	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+MAutoStereoFix	effect	vst3	MAutoStereoFix	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MAutoVolume	effect	vst3	MAutoVolume	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MBandPass	effect	vst3	MBandPass	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
 MBassador	effect	vst3	MBassador	exciters		audio-effects|exciters	Audio Effects/Exciters	
-MBitFun	effect	vst3	MBitFun	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
-MBitFunMB	effect	vst3	MBitFunMB	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+MBitFun	effect	vst3	MBitFun	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+MBitFunMB	effect	vst3	MBitFunMB	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 MCabinet	effect	vst3	MCabinet	convolution		audio-effects|convolution	Audio Effects/Convolution	
 MCabinetMB	effect	vst3	MCabinetMB	convolution		audio-effects|convolution	Audio Effects/Convolution	
-MCenter	effect	vst3	MCenter	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MCenter	effect	vst3	MCenter	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
 MCharacter	effect	vst3	MCharacter	exciters		audio-effects|exciters	Audio Effects/Exciters	
 MCharmVerb	effect	vst3	MCharmVerb	reverb		audio-effects|reverb	Audio Effects/Reverb	
-MChorusMB	effect	vst3	MChorusMB	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
-MComb	effect	vst3	MComb	comb	filters	audio-effects|filters|comb	Audio Effects/Filters/Comb	
-MCombMB	effect	vst3	MCombMB	comb	filters	audio-effects|filters|comb	Audio Effects/Filters/Comb	
-MCompressor	effect	vst3	MCompressor	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MChorusMB	effect	vst3	MChorusMB	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+MComb	effect	vst3	MComb	filters	comb	audio-effects|filters|comb	Audio Effects/Filters/Comb	
+MCombMB	effect	vst3	MCombMB	filters	comb	audio-effects|filters|comb	Audio Effects/Filters/Comb	
+MCompressor	effect	vst3	MCompressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 MConvolutionEZ	effect	vst3	MConvolutionEZ	convolution		audio-effects|convolution	Audio Effects/Convolution	
 MConvolutionMB	effect	vst3	MConvolutionMB	convolution		audio-effects|convolution	Audio Effects/Convolution	
-MDelay	effect	vst3	MDelay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-MDelayMB	effect	vst3	MDelayMB	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MDistortionMB	effect	vst3	MDistortionMB	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+MDelay	effect	vst3	MDelay	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+MDelayMB	effect	vst3	MDelayMB	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+MDistortionMB	effect	vst3	MDistortionMB	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
 MDoubleTracker	effect	vst3	MDoubleTracker	doubler		audio-effects|doubler	Audio Effects/Doubler	
 MDoubleTrackerMB	effect	vst3	MDoubleTrackerMB	doubler		audio-effects|doubler	Audio Effects/Doubler	
-MDrumLeveler	effect	vst3	MDrumLeveler	levelers	dynamics	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MDrumLeveler	effect	vst3	MDrumLeveler	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
 MDrumStrip	effect	vst3	MDrumStrip	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-MDynamicEq	effect	vst3	MDynamicEq	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
-MDynamics	effect	vst3	MDynamics	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
-MDynamicsMB	effect	vst3	MDynamicsMB	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
-MDynamicsMBLarge	effect	vst3	MDynamicsMBLarge	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MDynamicEq	effect	vst3	MDynamicEq	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+MDynamics	effect	vst3	MDynamics	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+MDynamicsMB	effect	vst3	MDynamicsMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MDynamicsMBLarge	effect	vst3	MDynamicsMBLarge	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
 Melodyne	effect	vst3	Melodyne	pitch		audio-effects|pitch	Audio Effects/Pitch	
-MEqualizer	effect	vst3	MEqualizer	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
-MEqualizerLP	effect	vst3	MEqualizerLP	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
-MFilter	effect	vst3	MFilter	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
-MFlanger	effect	vst3	MFlanger	flanger	modulation	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
-MFlangerMB	effect	vst3	MFlangerMB	flanger	modulation	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
-MFM2	effect	vst3	MFM2	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MFreeformAnalogEq	effect	vst3	MFreeformAnalogEq	graphic	eq	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
-MFreeformEqualizer	effect	vst3	MFreeformEqualizer	graphic	eq	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
-MFreeformPhase	effect	vst3	MFreeformPhase	allpass	filters	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
+MEqualizer	effect	vst3	MEqualizer	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+MEqualizerLP	effect	vst3	MEqualizerLP	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+MFilter	effect	vst3	MFilter	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+MFlanger	effect	vst3	MFlanger	modulation	flanger	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
+MFlangerMB	effect	vst3	MFlangerMB	modulation	flanger	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
+MFM2	effect	vst3	MFM2	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+MFreeformAnalogEq	effect	vst3	MFreeformAnalogEq	eq	graphic	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
+MFreeformEqualizer	effect	vst3	MFreeformEqualizer	eq	graphic	audio-effects|eq|graphic	Audio Effects/EQ/Graphic	
+MFreeformPhase	effect	vst3	MFreeformPhase	filters	allpass	audio-effects|filters|allpass	Audio Effects/Filters/Allpass	
 MFreqShifter	effect	vst3	MFreqShifter	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
 MFreqShifterMB	effect	vst3	MFreqShifterMB	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
 MGranularMB	effect	vst3	MGranularMB	granular		audio-effects|granular	Audio Effects/Granular	
-MGuitarArchitect	effect	vst3	MGuitarArchitect	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MGuitarArchitect	effect	vst3	MGuitarArchitect	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
 MHarmonizerMB	effect	vst3	MHarmonizerMB	pitch		audio-effects|pitch	Audio Effects/Pitch	
 MicroShift	effect	vst	MicroShift	doubler		audio-effects|doubler	Audio Effects/Doubler	
 MISHBY	effect	vst3	MISHBY	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-MLimiterMB	effect	vst3	MLimiterMB	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
-MLimiterX	effect	vst3	MLimiterX	limiters	dynamics	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+MLimiterMB	effect	vst3	MLimiterMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MLimiterX	effect	vst3	MLimiterX	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
 MMicSim	effect	vst3	MMicSim	convolution		audio-effects|convolution	Audio Effects/Convolution	
-MModernCompressor	effect	vst3	MModernCompressor	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MModernCompressor	effect	vst3	MModernCompressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 MMorph	effect	vst3	MMorph	resynthesis		audio-effects|resynthesis	Audio Effects/Resynthesis	
 Morph	effect	vst3	Morph	spectral		audio-effects|spectral	Audio Effects/Spectral	
-Morph-EQ	effect	vst3	Morph EQ	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+Morph-EQ	effect	vst3	Morph EQ	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
 MORPH-VST	effect	vst	MORPH VST	resynthesis		audio-effects|resynthesis	Audio Effects/Resynthesis	
-MPhaser	effect	vst3	MPhaser	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-MPhaserMB	effect	vst3	MPhaserMB	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-MPhatik	effect	vst3	MPhatik	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-MPolySaturator	effect	vst3	MPolySaturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MPhaser	effect	vst3	MPhaser	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+MPhaserMB	effect	vst3	MPhaserMB	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+MPhatik	effect	vst3	MPhatik	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MPolySaturator	effect	vst3	MPolySaturator	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
 MReverb	effect	vst3	MReverb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 MReverbMB	effect	vst3	MReverbMB	reverb		audio-effects|reverb	Audio Effects/Reverb	
 MRhythmizer	effect	vst3	MRhythmizer	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 MRhythmizerMB	effect	vst3	MRhythmizerMB	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
-MRingModulator	effect	vst3	MRingModulator	am	modulation	audio-effects|modulation|am	Audio Effects/Modulation/AM	
-MRingModulatorMB	effect	vst3	MRingModulatorMB	am	modulation	audio-effects|modulation|am	Audio Effects/Modulation/AM	
-MRotary	effect	vst3	MRotary	rotary	modulation	audio-effects|modulation|rotary	Audio Effects/Modulation/Rotary	
-MSaturator	effect	vst3	MSaturator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-MSaturatorMB	effect	vst3	MSaturatorMB	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-MSpectralDelay	effect	vst3	MSpectralDelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+MRingModulator	effect	vst3	MRingModulator	modulation	am	audio-effects|modulation|am	Audio Effects/Modulation/AM	
+MRingModulatorMB	effect	vst3	MRingModulatorMB	modulation	am	audio-effects|modulation|am	Audio Effects/Modulation/AM	
+MRotary	effect	vst3	MRotary	modulation	rotary	audio-effects|modulation|rotary	Audio Effects/Modulation/Rotary	
+MSaturator	effect	vst3	MSaturator	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MSaturatorMB	effect	vst3	MSaturatorMB	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+MSpectralDelay	effect	vst3	MSpectralDelay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
 MSpectralDynamics	effect	vst3	MSpectralDynamics	spectral		audio-effects|spectral	Audio Effects/Spectral	
 MSpectralDynamicsMini	effect	vst3	MSpectralDynamicsMini	spectral		audio-effects|spectral	Audio Effects/Spectral	
 MSpectralPan	effect	vst3	MSpectralPan	spectral		audio-effects|spectral	Audio Effects/Spectral	
-MStereoExpander	effect	vst3	MStereoExpander	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-MStereoGenerator	effect	vst3	MStereoGenerator	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-MStereoProcessor	effect	vst3	MStereoProcessor	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
-MStereoSpread	effect	vst3	MStereoSpread	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MStereoExpander	effect	vst3	MStereoExpander	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MStereoGenerator	effect	vst3	MStereoGenerator	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MStereoProcessor	effect	vst3	MStereoProcessor	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+MStereoSpread	effect	vst3	MStereoSpread	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
 MSuperLooper	effect	vst3	MSuperLooper	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 MSuperLooper16in16out	effect	vst3	MSuperLooper16in16out	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 MSuperLooper16out	effect	vst3	MSuperLooper16out	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 MTransformer	effect	vst3	MTransformer	pitch		audio-effects|pitch	Audio Effects/Pitch	
 MTransient	effect	vst3	MTransient	transient		audio-effects|transient	Audio Effects/Transient	
 MTransientMB	effect	vst3	MTransientMB	transient		audio-effects|transient	Audio Effects/Transient	
-MTremolo	effect	vst3	MTremolo	tremolo	modulation	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
-MTremoloMB	effect	vst3	MTremoloMB	tremolo	modulation	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
-MTurboAmp	effect	vst3	MTurboAmp	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
-MTurboComp	effect	vst3	MTurboComp	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-MTurboCompMB	effect	vst3	MTurboCompMB	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
-MTurboDelay	effect	vst3	MTurboDelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MTurboDelayMB	effect	vst3	MTurboDelayMB	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MTurboEQ	effect	vst3	MTurboEQ	parametric	eq	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
-MTurboFilter	effect	vst3	MTurboFilter	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+MTremolo	effect	vst3	MTremolo	modulation	tremolo	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
+MTremoloMB	effect	vst3	MTremoloMB	modulation	tremolo	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
+MTurboAmp	effect	vst3	MTurboAmp	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+MTurboComp	effect	vst3	MTurboComp	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MTurboCompMB	effect	vst3	MTurboCompMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MTurboDelay	effect	vst3	MTurboDelay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+MTurboDelayMB	effect	vst3	MTurboDelayMB	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+MTurboEQ	effect	vst3	MTurboEQ	eq	parametric	audio-effects|eq|parametric	Audio Effects/EQ/Parametric	
+MTurboFilter	effect	vst3	MTurboFilter	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
 MTurboReverb	effect	vst3	MTurboReverb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 MTurboReverbMB	effect	vst3	MTurboReverbMB	reverb		audio-effects|reverb	Audio Effects/Reverb	
-MultiBandCompressor	effect	vst	MultiBandCompressor	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-MultiEncoder	effect	vst	MultiEncoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-MultiEQ	effect	vst	MultiEQ	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+MultiBandCompressor	effect	vst	MultiBandCompressor	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+MultiEncoder	effect	vst	MultiEncoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+MultiEQ	effect	vst	MultiEQ	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 Multipass	effect	vst3	Multipass	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-MUltraMaximizer	effect	vst3	MUltraMaximizer	limiters	dynamics	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+MUltraMaximizer	effect	vst3	MUltraMaximizer	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
 MUnison	effect	vst3	MUnison	doubler		audio-effects|doubler	Audio Effects/Doubler	
-MVibrato	effect	vst3	MVibrato	vibrato	modulation	audio-effects|modulation|vibrato	Audio Effects/Modulation/Vibrato	
-MVibratoMB	effect	vst3	MVibratoMB	vibrato	modulation	audio-effects|modulation|vibrato	Audio Effects/Modulation/Vibrato	
-MVintageRotary	effect	vst3	MVintageRotary	rotary	modulation	audio-effects|modulation|rotary	Audio Effects/Modulation/Rotary	
-MVocoder	effect	vst3	MVocoder	vocoders	filters	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
-MWaveFolder	effect	vst3	MWaveFolder	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-MWaveFolderMB	effect	vst3	MWaveFolderMB	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-MWaveShaper	effect	vst3	MWaveShaper	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-MWaveShaperMB	effect	vst3	MWaveShaperMB	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-MWobbler	effect	vst3	MWobbler	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-MWobblerMB	effect	vst3	MWobblerMB	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+MVibrato	effect	vst3	MVibrato	modulation	vibrato	audio-effects|modulation|vibrato	Audio Effects/Modulation/Vibrato	
+MVibratoMB	effect	vst3	MVibratoMB	modulation	vibrato	audio-effects|modulation|vibrato	Audio Effects/Modulation/Vibrato	
+MVintageRotary	effect	vst3	MVintageRotary	modulation	rotary	audio-effects|modulation|rotary	Audio Effects/Modulation/Rotary	
+MVocoder	effect	vst3	MVocoder	filters	vocoders	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
+MWaveFolder	effect	vst3	MWaveFolder	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveFolderMB	effect	vst3	MWaveFolderMB	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveShaper	effect	vst3	MWaveShaper	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWaveShaperMB	effect	vst3	MWaveShaperMB	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+MWobbler	effect	vst3	MWobbler	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+MWobblerMB	effect	vst3	MWobblerMB	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
 MXXX	effect	vst3	MXXX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 MXXX1	effect	vst3	MXXX1	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 MXXX6in6out	effect	vst3	MXXX6in6out	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 MXXX6out	effect	vst3	MXXX6out	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 MYON	effect	vst3	MYON	reverb		audio-effects|reverb	Audio Effects/Reverb	
-NeuralAmpModeler	effect	vst3	NeuralAmpModeler	amp-simulations	harmonic	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
+NeuralAmpModeler	effect	vst3	NeuralAmpModeler	harmonic	amp-simulations	audio-effects|harmonic|amp-simulations	Audio Effects/Harmonic/Amp Simulations	
 neutone	effect	vst3	neutone	resynthesis		audio-effects|resynthesis	Audio Effects/Resynthesis	
 Neutron-3	effect	vst3	Neutron 3	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Neutron-3-Exciter	effect	vst3	Neutron 3 Exciter	exciters		audio-effects|exciters	Audio Effects/Exciters	
-Neutron-3-Sculptor	effect	vst3	Neutron 3 Sculptor	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+Neutron-3-Sculptor	effect	vst3	Neutron 3 Sculptor	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 Neutron-3-Transient-Shaper	effect	vst3	Neutron 3 Transient Shaper	transient		audio-effects|transient	Audio Effects/Transient	
-Nudistort	effect	vst3	Nudistort	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Objeq-Delay	effect	vst3	Objeq Delay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-OhmicideS	effect	vst3	Ohmicide[S]	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-OmniCompressor	effect	vst	OmniCompressor	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-OTT	effect	vst3	OTT	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+Nudistort	effect	vst3	Nudistort	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Objeq-Delay	effect	vst3	Objeq Delay	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+OhmicideS	effect	vst3	Ohmicide[S]	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+OmniCompressor	effect	vst	OmniCompressor	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+OTT	effect	vst3	OTT	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
 Ozone-9	effect	vst3	Ozone 9	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Ozone-9-Exciter	effect	vst3	Ozone 9 Exciter	exciters		audio-effects|exciters	Audio Effects/Exciters	
-Ozone-9-Low-End-Focus	effect	vst3	Ozone 9 Low End Focus	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+Ozone-9-Low-End-Focus	effect	vst3	Ozone 9 Low End Focus	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 PaulXStretch	effect	vst3	PaulXStretch	temporal		audio-effects|temporal	Audio Effects/Temporal	
 Phase-Lock	effect	vst3	Phase Lock	spectral		audio-effects|spectral	Audio Effects/Spectral	
-PhaseMistress	effect	vst	PhaseMistress	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-Phasis	effect	vst3	Phasis	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+PhaseMistress	effect	vst	PhaseMistress	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+Phasis	effect	vst3	Phasis	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
 PITCHMAP-VST	effect	vst	PITCHMAP VST	pitch		audio-effects|pitch	Audio Effects/Pitch	
 PlaceIt	effect	vst3	PlaceIt	convolution		audio-effects|convolution	Audio Effects/Convolution	
 plugdata-fx	effect	vst3	plugdata-fx	modular		audio-effects|modular	Audio Effects/Modular	
 PocketDimension	effect	vst3	PocketDimension	temporal		audio-effects|temporal	Audio Effects/Temporal	
 Portal	effect	vst3	Portal	granular		audio-effects|granular	Audio Effects/Granular	
-Presswerk	effect	vst3	Presswerk	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-PrimalTap	effect	vst	PrimalTap	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
+Presswerk	effect	vst3	Presswerk	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+PrimalTap	effect	vst	PrimalTap	delay	multitap	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
 prisma	effect	vst3	prisma	pitch		audio-effects|pitch	Audio Effects/Pitch	
-ProbeDecoder	effect	vst	ProbeDecoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+ProbeDecoder	effect	vst	ProbeDecoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 Protoverb	effect	vst	Protoverb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Puberty-Simulator	effect	vst3	Puberty Simulator	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-Radiator	effect	vst	Radiator	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Radiator	effect	vst	Radiator	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
 Raum	effect	vst3	Raum	reverb		audio-effects|reverb	Audio Effects/Reverb	
-RC-20-Retro-Color-v2	effect	vst3	RC-20 Retro Color v2	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+RC-20-Retro-Color-v2	effect	vst3	RC-20 Retro Color v2	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 RC-24	effect	vst3	RC 24	reverb		audio-effects|reverb	Audio Effects/Reverb	
 RC-48	effect	vst3	RC 48	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Reaktor-6-FX	effect	vst	Reaktor 6 FX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Redoptor2	effect	vst3	Redoptor2	saturators	harmonic	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
-Repeater	effect	vst3	Repeater	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-Replika-XT	effect	vst3	Replika XT	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+Redoptor2	effect	vst3	Redoptor2	harmonic	saturators	audio-effects|harmonic|saturators	Audio Effects/Harmonic/Saturators	
+Repeater	effect	vst3	Repeater	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+Replika-XT	effect	vst3	Replika XT	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
 ResonantDownsample	effect	vst3	ResonantDownsample	glitch		audio-effects|glitch	Audio Effects/Glitch	
 reTune	effect	vst3	reTune	pitch		audio-effects|pitch	Audio Effects/Pitch	
 Ribs	effect	vst	Ribs	granular		audio-effects|granular	Audio Effects/Granular	
-Rift	effect	vst3	Rift	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-Rift-Feedback-Lite	effect	vst3	Rift Feedback Lite	nonlinear	filters	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
-Rift-Filter-Lite	effect	vst3	Rift Filter Lite	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
-Ripple-Phaser	effect	vst3	Ripple Phaser	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-RoomEncoder	effect	vst	RoomEncoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Rift	effect	vst3	Rift	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Rift-Feedback-Lite	effect	vst3	Rift Feedback Lite	filters	nonlinear	audio-effects|filters|nonlinear	Audio Effects/Filters/Nonlinear	
+Rift-Filter-Lite	effect	vst3	Rift Filter Lite	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+Ripple-Phaser	effect	vst3	Ripple Phaser	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+RoomEncoder	effect	vst	RoomEncoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 RX-7-Breath-Control	effect	vst3	RX 7 Breath Control	restoration		audio-effects|restoration	Audio Effects/Restoration	
 RX-7-Connect	effect	vst3	RX 7 Connect	restoration		audio-effects|restoration	Audio Effects/Restoration	
 RX-7-De-click	effect	vst3	RX 7 De-click	restoration		audio-effects|restoration	Audio Effects/Restoration	
@@ -377,62 +377,62 @@ RX-7-Mouth-De-click	effect	vst3	RX 7 Mouth De-click	restoration		audio-effects|r
 RX-7-Spectral-De-noise	effect	vst3	RX 7 Spectral De-noise	restoration		audio-effects|restoration	Audio Effects/Restoration	
 RX-7-Voice-De-noise	effect	vst3	RX 7 Voice De-noise	restoration		audio-effects|restoration	Audio Effects/Restoration	
 Satin	effect	vst3	Satin	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
-SceneRotator	effect	vst	SceneRotator	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+SceneRotator	effect	vst	SceneRotator	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 SerumFX	effect	vst3	SerumFX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 ShaperBox-2	effect	vst	ShaperBox 2	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
 ShaperBox-3	effect	vst3	ShaperBox 3	rhythmic		audio-effects|rhythmic	Audio Effects/Rhythmic	
-ShapeShifter	effect	vst3	ShapeShifter	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+ShapeShifter	effect	vst3	ShapeShifter	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
 Silencer	effect	vst3	Silencer	restoration		audio-effects|restoration	Audio Effects/Restoration	
-SimpleDecoder	effect	vst	SimpleDecoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+SimpleDecoder	effect	vst	SimpleDecoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 Sinusoidal-Shaped-Filter	effect	vst3	Sinusoidal Shaped Filter	spectral		audio-effects|spectral	Audio Effects/Spectral	
 SketchCassette-II	effect	vst3	SketchCassette II	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
 smartchain	effect	vst3	smartchain	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-smartcomp2	effect	vst3	smartcomp2	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-smartlimit	effect	vst3	smartlimit	limiters	dynamics	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+smartcomp2	effect	vst3	smartcomp2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+smartlimit	effect	vst3	smartlimit	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
 smartreverb2	effect	vst3	smartreverb2	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Snap-Heap	effect	vst3	Snap Heap	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Solstice	effect	vst3	Solstice	granular		audio-effects|granular	Audio Effects/Granular	
-soothe2	effect	vst3	soothe2	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+soothe2	effect	vst3	soothe2	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 Spacerek	effect	vst3	Spacerek	reverb		audio-effects|reverb	Audio Effects/Reverb	
 SpecPan	effect	vst	SpecPan	spectral		audio-effects|spectral	Audio Effects/Spectral	
 Spectral-Compressor	effect	vst3	Spectral Compressor	spectral		audio-effects|spectral	Audio Effects/Spectral	
 Spectral-Gate	effect	vst3	Spectral Gate	spectral		audio-effects|spectral	Audio Effects/Spectral	
 SpectraLayers	effect	vst3	SpectraLayers	restoration		audio-effects|restoration	Audio Effects/Restoration	
 spiff	effect	vst3	spiff	transient		audio-effects|transient	Audio Effects/Transient	
-Squash	effect	vst3	Squash	multiband	dynamics	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
-SSL-Native-Bus-Compressor-2	effect	vst3	SSL Native Bus Compressor 2	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Squash	effect	vst3	Squash	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+SSL-Native-Bus-Compressor-2	effect	vst3	SSL Native Bus Compressor 2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 SSL-Native-Channel-Strip-2	effect	vst3	SSL Native Channel Strip 2	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
-StereoEncoder	effect	vst	StereoEncoder	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
-Stylust	effect	vst3	Stylust	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+StereoEncoder	effect	vst	StereoEncoder	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+Stylust	effect	vst3	Stylust	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 Subvert	effect	vst3	Subvert	glitch		audio-effects|glitch	Audio Effects/Glitch	
-Supercharger-GT	effect	vst3	Supercharger GT	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Supercharger-GT	effect	vst3	Supercharger GT	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 Supermodal	effect	vst3	Supermodal	resonators		audio-effects|resonators	Audio Effects/Resonators	
 SuperPlate	effect	vst	SuperPlate	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Supertone-Air	effect	vst3	Supertone Air	restoration		audio-effects|restoration	Audio Effects/Restoration	
 Surge-XT-Effects	effect	vst3	Surge XT Effects	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Swarm-Reverb	effect	vst3	Swarm Reverb	reverb		audio-effects|reverb	Audio Effects/Reverb	
-Syntorus2	effect	vst3	Syntorus2	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
-TAL-Chorus-LX	effect	vst3	TAL-Chorus-LX	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+Syntorus2	effect	vst3	Syntorus2	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+TAL-Chorus-LX	effect	vst3	TAL-Chorus-LX	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
 TAL-Reverb-2	effect	vst3	TAL-Reverb-2	reverb		audio-effects|reverb	Audio Effects/Reverb	
 TAL-Reverb-3	effect	vst3	TAL-Reverb-3	reverb		audio-effects|reverb	Audio Effects/Reverb	
 TAL-Reverb-4	effect	vst3	TAL-Reverb-4	reverb		audio-effects|reverb	Audio Effects/Reverb	
-TAL-Vocoder-2	effect	vst3	TAL-Vocoder-2	vocoders	filters	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
-Tekturon	effect	vst3	Tekturon	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
-Thermal	effect	vst3	Thermal	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+TAL-Vocoder-2	effect	vst3	TAL-Vocoder-2	filters	vocoders	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
+Tekturon	effect	vst3	Tekturon	delay	multitap	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
+Thermal	effect	vst3	Thermal	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
 TONEFLX	effect	vst3	TONEFLX	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-ToolBox	effect	vst	ToolBox	surround	sound-field	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
+ToolBox	effect	vst	ToolBox	sound-field	surround	audio-effects|sound-field|surround	Audio Effects/Sound Field/Surround	
 Topos	effect	vst3	Topos	convolution		audio-effects|convolution	Audio Effects/Convolution	
 Toraverb2	effect	vst3	Toraverb2	reverb		audio-effects|reverb	Audio Effects/Reverb	
-Trackspacer25	effect	vst3	Trackspacer25	dynamic	eq	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
+Trackspacer25	effect	vst3	Trackspacer25	eq	dynamic	audio-effects|eq|dynamic	Audio Effects/EQ/Dynamic	
 Transient-Master	effect	vst3	Transient Master	transient		audio-effects|transient	Audio Effects/Transient	
 Transit-2	effect	vst3	Transit 2	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Trash	effect	vst3	Trash	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
-trasher	effect	vst3	trasher	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-Tremolator	effect	vst	Tremolator	tremolo	modulation	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
+Trash	effect	vst3	Trash	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+trasher	effect	vst3	trasher	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+Tremolator	effect	vst	Tremolator	modulation	tremolo	audio-effects|modulation|tremolo	Audio Effects/Modulation/Tremolo	
 Turnado	effect	vst3	Turnado	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 Twangstrom	effect	vst3	Twangstrom	reverb		audio-effects|reverb	Audio Effects/Reverb	
-uaudio-teletronix-la-2a-tc	effect	vst3	uaudio_teletronix_la-2a_tc	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
-uaudio-ua-1176	effect	vst3	uaudio_ua_1176	compressors	dynamics	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+uaudio-teletronix-la-2a-tc	effect	vst3	uaudio_teletronix_la-2a_tc	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+uaudio-ua-1176	effect	vst3	uaudio_ua_1176	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
 Uhbik	effect	vst3	Uhbik	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
 UNFILTER-8ch-VST	effect	vst	UNFILTER 8ch VST	restoration		audio-effects|restoration	Audio Effects/Restoration	
 UNFILTER-8ch-VST3	effect	vst3	UNFILTER 8ch VST3	restoration		audio-effects|restoration	Audio Effects/Restoration	
@@ -440,37 +440,37 @@ UNFILTER-VST	effect	vst	UNFILTER VST	restoration		audio-effects|restoration	Audi
 UNFILTER-VST3	effect	vst3	UNFILTER VST3	restoration		audio-effects|restoration	Audio Effects/Restoration	
 Unfiltered-Audio-Bass-Mint	effect	vst3	Unfiltered Audio Bass Mint	exciters		audio-effects|exciters	Audio Effects/Exciters	
 Unfiltered-Audio-BYOME	effect	vst3	Unfiltered Audio BYOME	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Unfiltered-Audio-Dent-2	effect	vst3	Unfiltered Audio Dent 2	distortion	harmonic	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
+Unfiltered-Audio-Dent-2	effect	vst3	Unfiltered Audio Dent 2	harmonic	distortion	audio-effects|harmonic|distortion	Audio Effects/Harmonic/Distortion	
 Unfiltered-Audio-Fault	effect	vst3	Unfiltered Audio Fault	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-Unfiltered-Audio-G8	effect	vst3	Unfiltered Audio G8	expanders	dynamics	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
-Unfiltered-Audio-lo-fi-af	effect	vst3	Unfiltered Audio lo-fi-af	degraders	harmonic	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
+Unfiltered-Audio-G8	effect	vst3	Unfiltered Audio G8	dynamics	expanders	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
+Unfiltered-Audio-lo-fi-af	effect	vst3	Unfiltered Audio lo-fi-af	harmonic	degraders	audio-effects|harmonic|degraders	Audio Effects/Harmonic/Degraders	
 Unfiltered-Audio-Needlepoint	effect	vst3	Unfiltered Audio Needlepoint	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
-Unfiltered-Audio-Sandman-Pro	effect	vst3	Unfiltered Audio Sandman Pro	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+Unfiltered-Audio-Sandman-Pro	effect	vst3	Unfiltered Audio Sandman Pro	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
 Unfiltered-Audio-Silo	effect	vst3	Unfiltered Audio Silo	granular		audio-effects|granular	Audio Effects/Granular	
 Unfiltered-Audio-SpecOps	effect	vst3	Unfiltered Audio SpecOps	spectral		audio-effects|spectral	Audio Effects/Spectral	
 Unfiltered-Audio-Tails	effect	vst3	Unfiltered Audio Tails	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Unfiltered-Audio-Triad	effect	vst3	Unfiltered Audio Triad	multi-fx		audio-effects|multi-fx	Audio Effects/Multi-FX	
-Unfiltered-Audio-Zip	effect	vst3	Unfiltered Audio Zip	companders	dynamics	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+Unfiltered-Audio-Zip	effect	vst3	Unfiltered Audio Zip	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
 UNVEIL-8ch-VST	effect	vst	UNVEIL 8ch VST	restoration		audio-effects|restoration	Audio Effects/Restoration	
 UNVEIL-VST	effect	vst	UNVEIL VST	restoration		audio-effects|restoration	Audio Effects/Restoration	
-UZU	effect	vst3	UZU	phaser	modulation	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
-ValhallaDelay	effect	vst3	ValhallaDelay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
+UZU	effect	vst3	UZU	modulation	phaser	audio-effects|modulation|phaser	Audio Effects/Modulation/Phaser	
+ValhallaDelay	effect	vst3	ValhallaDelay	delay	classic-delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
 ValhallaFreqEcho	effect	vst3	ValhallaFreqEcho	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
 ValhallaFutureVerb	effect	vst3	ValhallaFutureVerb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 ValhallaPlate	effect	vst3	ValhallaPlate	reverb		audio-effects|reverb	Audio Effects/Reverb	
 ValhallaRoom	effect	vst3	ValhallaRoom	reverb		audio-effects|reverb	Audio Effects/Reverb	
 ValhallaShimmer	effect	vst3	ValhallaShimmer	reverb		audio-effects|reverb	Audio Effects/Reverb	
-ValhallaSpaceModulator	effect	vst3	ValhallaSpaceModulator	flanger	modulation	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
-ValhallaSupermassive	effect	vst3	ValhallaSupermassive	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-ValhallaUberMod	effect	vst3	ValhallaUberMod	chorus	modulation	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
+ValhallaSpaceModulator	effect	vst3	ValhallaSpaceModulator	modulation	flanger	audio-effects|modulation|flanger	Audio Effects/Modulation/Flanger	
+ValhallaSupermassive	effect	vst3	ValhallaSupermassive	delay	special-delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+ValhallaUberMod	effect	vst3	ValhallaUberMod	modulation	chorus	audio-effects|modulation|chorus	Audio Effects/Modulation/Chorus	
 ValhallaVintageVerb	effect	vst3	ValhallaVintageVerb	reverb		audio-effects|reverb	Audio Effects/Reverb	
 Vinyl	effect	vst3	Vinyl	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
-VocalSynth-2	effect	vst3	VocalSynth 2	vocoders	filters	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
+VocalSynth-2	effect	vst3	VocalSynth 2	filters	vocoders	audio-effects|filters|vocoders	Audio Effects/Filters/Vocoders	
 Voltage-Modular-FX	effect	vst3	Voltage Modular FX	modular		audio-effects|modular	Audio Effects/Modular	
 Wave-Shifter	effect	vst3	Wave Shifter	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-WaveBox	effect	vst3	WaveBox	clippers-shapers-folders	harmonic	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
-Wavefield	effect	vst3	Wavefield	formant	filters	audio-effects|filters|formant	Audio Effects/Filters/Formant	
-Wider	effect	vst3	Wider	stereo	sound-field	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
+WaveBox	effect	vst3	WaveBox	harmonic	clippers-shapers-folders	audio-effects|harmonic|clippers-shapers-folders	Audio Effects/Harmonic/Clippers:Shapers:Folders	
+Wavefield	effect	vst3	Wavefield	filters	formant	audio-effects|filters|formant	Audio Effects/Filters/Formant	
+Wider	effect	vst3	Wider	sound-field	stereo	audio-effects|sound-field|stereo	Audio Effects/Sound Field/Stereo	
 Wires	effect	vst3	Wires	analog-emulation		audio-effects|analog-emulation	Audio Effects/Analog Emulation	
 WORMHOLE-VST	effect	vst	WORMHOLE VST	frequency-shifters		audio-effects|frequency-shifters	Audio Effects/Frequency Shifters	
-WOW2	effect	vst3	WOW2	state-variable	filters	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	
+WOW2	effect	vst3	WOW2	filters	state-variable	audio-effects|filters|state-variable	Audio Effects/Filters/State Variable	

@@ -1,27 +1,42 @@
 master	kind	format	fx_name	category	group	tags	folders	alt_formats
-++pitchdelay	effect	vst3	++pitchdelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-Antresol	effect	vst3	Antresol	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-Cluster-Delay	effect	vst3	Cluster Delay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-ColourCopy	effect	vst3	ColourCopy	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-Deelay	effect	vst3	Deelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-Delay-ETERNITY	effect	vst3	Delay ETERNITY	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-Dubstation-2	effect	vst3	Dubstation 2	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-EchoBoy	effect	vst	EchoBoy	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-FabFilter-Timeless-2	effect	vst3	FabFilter Timeless 2	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-FabFilter-Timeless-3	effect	vst3	FabFilter Timeless 3	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-kHs-Delay	effect	vst3	kHs Delay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-kHs-Dual-Delay	effect	vst3	kHs Dual Delay	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
-MDelay	effect	vst3	MDelay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-MDelayMB	effect	vst3	MDelayMB	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MFM2	effect	vst3	MFM2	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MSpectralDelay	effect	vst3	MSpectralDelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MTurboDelay	effect	vst3	MTurboDelay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-MTurboDelayMB	effect	vst3	MTurboDelayMB	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-Objeq-Delay	effect	vst3	Objeq Delay	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-PrimalTap	effect	vst	PrimalTap	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
-Repeater	effect	vst3	Repeater	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-Replika-XT	effect	vst3	Replika XT	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-Tekturon	effect	vst3	Tekturon	multitap	delay	audio-effects|delay|multitap	Audio Effects/Delay/Multitap	
-Unfiltered-Audio-Sandman-Pro	effect	vst3	Unfiltered Audio Sandman Pro	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
-ValhallaDelay	effect	vst3	ValhallaDelay	classic-delay	delay	audio-effects|delay|classic-delay	Audio Effects/Delay/Classic Delay	
-ValhallaSupermassive	effect	vst3	ValhallaSupermassive	special-delay	delay	audio-effects|delay|special-delay	Audio Effects/Delay/Special Delay	
+++compand	effect	vst3	++compand	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+bx-townhouse-Buss-Compressor	effect	vst3	bx_townhouse Buss Compressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+ERA4-VoiceLeveler	effect	vst	ERA4_VoiceLeveler	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+Esspresso	effect	vst3	Esspresso	dynamics	deessers	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
+FabFilter-Pro-C-2	effect	vst3	FabFilter Pro-C 2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+FabFilter-Pro-DS	effect	vst3	FabFilter Pro-DS	dynamics	deessers	audio-effects|dynamics|deessers	Audio Effects/Dynamics/Deessers	
+FabFilter-Pro-G	effect	vst3	FabFilter Pro-G	dynamics	expanders	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
+FabFilter-Pro-L-2	effect	vst3	FabFilter Pro-L 2	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+FabFilter-Pro-MB	effect	vst3	FabFilter Pro-MB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+FirePresser	effect	vst3	FirePresser	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Fuse-Compressor	effect	vst3	Fuse Compressor	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+INTENSITY-VST	effect	vst	INTENSITY VST	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+kHs-Compactor	effect	vst3	kHs Compactor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+kHs-Compressor	effect	vst3	kHs Compressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+kHs-Dynamics	effect	vst3	kHs Dynamics	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+kHs-Limiter	effect	vst3	kHs Limiter	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+MAGC	effect	vst3	MAGC	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MAutoVolume	effect	vst3	MAutoVolume	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MCompressor	effect	vst3	MCompressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MDrumLeveler	effect	vst3	MDrumLeveler	dynamics	levelers	audio-effects|dynamics|levelers	Audio Effects/Dynamics/Levelers	
+MDynamics	effect	vst3	MDynamics	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+MDynamicsMB	effect	vst3	MDynamicsMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MDynamicsMBLarge	effect	vst3	MDynamicsMBLarge	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MLimiterMB	effect	vst3	MLimiterMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MLimiterX	effect	vst3	MLimiterX	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+MModernCompressor	effect	vst3	MModernCompressor	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MTurboComp	effect	vst3	MTurboComp	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+MTurboCompMB	effect	vst3	MTurboCompMB	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+MUltraMaximizer	effect	vst3	MUltraMaximizer	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+OTT	effect	vst3	OTT	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+Presswerk	effect	vst3	Presswerk	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+ShapeShifter	effect	vst3	ShapeShifter	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	
+smartcomp2	effect	vst3	smartcomp2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+smartlimit	effect	vst3	smartlimit	dynamics	limiters	audio-effects|dynamics|limiters	Audio Effects/Dynamics/Limiters	
+Squash	effect	vst3	Squash	dynamics	multiband	audio-effects|dynamics|multiband	Audio Effects/Dynamics/Multiband	
+SSL-Native-Bus-Compressor-2	effect	vst3	SSL Native Bus Compressor 2	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Supercharger-GT	effect	vst3	Supercharger GT	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+uaudio-teletronix-la-2a-tc	effect	vst3	uaudio_teletronix_la-2a_tc	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+uaudio-ua-1176	effect	vst3	uaudio_ua_1176	dynamics	compressors	audio-effects|dynamics|compressors	Audio Effects/Dynamics/Compressors	
+Unfiltered-Audio-G8	effect	vst3	Unfiltered Audio G8	dynamics	expanders	audio-effects|dynamics|expanders	Audio Effects/Dynamics/Expanders	
+Unfiltered-Audio-Zip	effect	vst3	Unfiltered Audio Zip	dynamics	companders	audio-effects|dynamics|companders	Audio Effects/Dynamics/Companders	

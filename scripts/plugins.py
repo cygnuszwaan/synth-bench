@@ -8,15 +8,15 @@
 
 The folder tree is the tag source. For  Audio Effects/Dynamics/Compressors/Foo.vst3 :
     kind     = effect                 (top-level folder listed in --fx-top)
-    category = compressors            (deepest folder)
-    group    = dynamics               (its parent, if the plugin is 2+ levels deep)
+    category = dynamics               (broad: the first folder below the top-level one)
+    group    = compressors            (fine: the deepest folder, if the plugin is 2+ levels deep)
     tags     = audio-effects|dynamics|compressors  (every folder above the plugin)
 Anything not under --fx-top is an instrument.
 
 plugins.tsv is the catalog. build_masters.lua reads build_list.tsv (made by `list`), and
 run_bench.py --folder reads plugins.tsv. Nothing here touches Reaper.
 """
-import argparse, csv, os, re, shutil, sys
+import argparse, csv, json, os, plistlib, re, shutil, sys
 from pathlib import Path
 
 PLUGIN_EXTS = (".vst3", ".vst")
@@ -49,13 +49,63 @@ def read_aliases(path):
     return {r[0].strip(): r[1].strip() for r in rows if len(r) > 1 and r[1].strip()}
 
 
-def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
+LEGAL_SUFFIX = re.compile(r"[,\s]+(inc|llc|ltd|gmbh|ug|ab|bv|sl|srl|s\.?r\.?l|co|corp|corporation|limited|"
+                          r"all rights reserved)\.?$", re.I)
+
+
+def clean_vendor(raw):
+    """'FabFilter GmbH' -> 'FabFilter'; 'Native Instruments' -> 'Native-Instruments' (same style as master names)."""
+    v = re.sub(r"(?i)\(c\)|\u00a9|copyright|\b(19|20)\d\d(\s*[-,]\s*(19|20)?\d\d)*\b", " ", raw or "")
+    v = v.strip(" .,;:-\t")
+    for _ in range(3):
+        v = LEGAL_SUFFIX.sub("", v).strip(" .,;:-")
+    return master_name(v)
+
+
+def read_vendor(bundle):
+    """Best guess at who made a plugin, from the bundle itself (macOS). '' when nothing usable.
+    1. VST3 moduleinfo.json  \"Vendor\"  (what the plugin itself reports to the host)
+    2. Info.plist  NSHumanReadableCopyright  (\"(c) 2024 FabFilter\")
+    3. Info.plist  CFBundleIdentifier  (com.fabfilter.Pro-Q -> fabfilter; lowercase, so last resort)"""
+    b = Path(bundle)
+    for rel in ("Contents/Resources/moduleinfo.json", "Contents/moduleinfo.json"):
+        try:
+            m = re.search(r'"Vendor"\s*:\s*"([^"]+)"', (b / rel).read_text(encoding="utf-8-sig", errors="ignore"))
+            if m and clean_vendor(m.group(1)):
+                return clean_vendor(m.group(1))
+        except OSError:
+            pass
+    try:
+        with open(b / "Contents/Info.plist", "rb") as fh:
+            info = plistlib.load(fh)
+    except Exception:
+        return ""
+    v = clean_vendor(str(info.get("NSHumanReadableCopyright", "")))
+    if v and not re.fullmatch(r"[\d.\-]*", v):
+        return v
+    parts = str(info.get("CFBundleIdentifier", "")).split(".")
+    return clean_vendor(parts[1]) if len(parts) >= 3 and parts[0].lower() in ("com", "net", "org", "io", "de", "audio") else ""
+
+
+def read_vendor_map(path):
+    """Optional vendors.csv: raw,vendor. Fixes spellings the plugins report ('Valhalla DSP' -> 'Valhalla')."""
+    p = Path(path)
+    if not p.exists():
+        return {}
+    with open(p, encoding="utf-8-sig", newline="") as fh:
+        rows = [r for r in csv.reader(fh) if r and not r[0].startswith("#")]
+    if rows and rows[0][0].strip().lower() in ("raw", "found", "from"):
+        rows = rows[1:]
+    return {clean_vendor(r[0]).lower(): r[1].strip() for r in rows if len(r) > 1 and r[1].strip()}
+
+
+def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None, vendor_map=None):
     root = Path(root).expanduser()
     if not root.is_dir():
         raise SystemExit(f"{root} is not a folder")
     # Scanning from inside "Audio Effects" (or "Instruments") itself: count that folder as the top level
     root_is_top = slug(root.name) in (slug(fx_top), slug(instr_top)) and not kind_all
-    found = []  # (stem, ext, rel_folders)
+    found = []  # (stem, ext, rel_folders, path)
     for dirpath, dirnames, filenames in os.walk(root):
         rel = Path(dirpath).relative_to(root).parts
         if root_is_top:
@@ -64,16 +114,16 @@ def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
         keep = []
         for d in dirnames:
             if d.lower().endswith(PLUGIN_EXTS):       # macOS bundle / symlink: a plugin, don't descend
-                found.append((d[: d.rfind(".")], d[d.rfind(".") :].lower(), rel))
+                found.append((d[: d.rfind(".")], d[d.rfind(".") :].lower(), rel, Path(dirpath) / d))
             elif not d.startswith("."):
                 keep.append(d)
         dirnames[:] = keep
         for f in sorted(filenames):
             if f.lower().endswith(PLUGIN_EXTS):
-                found.append((f[: f.rfind(".")], f[f.rfind(".") :].lower(), rel))
+                found.append((f[: f.rfind(".")], f[f.rfind(".") :].lower(), rel, Path(dirpath) / f))
 
     by_master, notes = {}, []
-    for stem, ext, rel in found:
+    for stem, ext, rel, path in found:
         if not rel:
             notes.append(f"skipped {stem}{ext}: sits in the root, no folder to tag it with")
             continue
@@ -83,13 +133,14 @@ def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
             continue
         rec = by_master.get(name)
         if rec is None:
-            by_master[name] = rec = dict(master=name, stems={}, folders=[], exts=set())
+            by_master[name] = rec = dict(master=name, stems={}, folders=[], exts=set(), paths={})
         elif stem not in rec["stems"] and rec["stems"]:
             notes.append(f"'{stem}' and '{next(iter(rec['stems']))}' both clean to '{name}': "
                          f"kept the first; give one an alias in aliases.csv")
             continue
         rec["stems"].setdefault(stem, ext)
         rec["exts"].add(ext)
+        rec["paths"].setdefault(ext, path)
         rec["folders"].append(rel)
 
     rows = []
@@ -106,8 +157,8 @@ def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
         first = folders[0]
         is_fx = (kind_all == "effect") if kind_all else slug(first[0]) == slug(fx_top)
         below = [slug(p) for p in (first if kind_all else first[1:])]
-        category = below[-1] if below else slug(first[0])
-        group = below[-2] if len(below) >= 2 else ""
+        category = below[0] if below else slug(first[0])          # broad
+        group = below[-1] if len(below) >= 2 else ""             # fine
         tags = []
         for rel in folders:
             for p in rel:
@@ -117,7 +168,14 @@ def scan(root, fx_top, aliases, instr_top="Instruments", kind_all=None):
         if len(folders) > 1:
             notes.append(f"{name} is in {len(folders)} folders ({' ; '.join('/'.join(f) for f in folders)}); "
                          f"category comes from the first")
-        rows.append(dict(master=name, kind="effect" if is_fx else "instrument", format=fmt,
+        vendor = ""
+        for e in exts:                                           # VST3 bundle first, then VST2
+            if rec["paths"][e].is_dir():
+                vendor = read_vendor(rec["paths"][e])
+                if vendor:
+                    break
+        vendor = (vendor_map or {}).get(vendor.lower(), vendor)
+        rows.append(dict(master=name, kind="effect" if is_fx else "instrument", format=fmt, vendor=vendor,
                          fx_name=stem, category=category, group=group,
                          tags="|".join(tags), folders=" ; ".join("/".join(f) for f in folders),
                          alt_formats=",".join(e.lstrip(".") for e in exts[1:])))
@@ -179,7 +237,8 @@ def write_effects_csv(rows):
         w = csv.writer(fh)
         w.writerow(["effect", "category", "group", "vendor"])
         for r in fx:
-            w.writerow([r["master"], r["category"], r["group"], old.get(r["master"], {}).get("vendor", "")])
+            w.writerow([r["master"], r["category"], r["group"],
+                        old.get(r["master"], {}).get("vendor", "").strip() or r.get("vendor", "")])
     print(f"wrote effects.csv: {len(fx)} effects")
     missing = [n for n in old if n not in {r['master'] for r in fx}]
     if missing:
@@ -229,7 +288,9 @@ def main():
                         "folder of reverbs and it has no Audio Effects / Instruments level)")
     s.add_argument("--aliases", default="aliases.csv",
                    help="optional csv: file_stem,master_name (to match names already in your results)")
-    s.add_argument("--write-effects", action="store_true", help="(over)write effects.csv, keeping vendor values")
+    s.add_argument("--vendors", default="vendors.csv",
+                   help="optional csv: raw,vendor (to tidy the vendor names the plugins report)")
+    s.add_argument("--write-effects", action="store_true", help="(over)write effects.csv; vendor values already in it are kept, blanks are filled from the plugins")
     s.add_argument("--write-tags", action="store_true", help="add instrument rows to tags.csv, keeping existing rows")
     s.add_argument("--tag-depth", choices=["leaf", "all"], default="leaf",
                    help="tags.csv: one tag per instrument (deepest folder) or one per folder level")
@@ -243,12 +304,21 @@ def main():
 
     a = ap.parse_args()
     if a.cmd == "scan":
-        rows, notes = scan(a.root, a.fx_top, read_aliases(a.aliases), a.instr_top, a.kind_all)
+        rows, notes = scan(a.root, a.fx_top, read_aliases(a.aliases), a.instr_top, a.kind_all,
+                           read_vendor_map(a.vendors))
         write_tsv(CATALOG, rows, COLS)
         ne = sum(r["kind"] == "effect" for r in rows)
         print(f"wrote {CATALOG}: {len(rows)} plugins ({len(rows) - ne} instruments, {ne} effects)")
         for n in notes:
             print("  note:", n)
+        fx = [r for r in rows if r["kind"] == "effect"]
+        got = [r for r in fx if r.get("vendor")]
+        if fx:
+            from collections import Counter
+            print(f"  vendor read from the plugin bundle for {len(got)} of {len(fx)} effects "
+                  f"(those left blank keep any vendor already in effects.csv)")
+            print("  vendors found: " + ", ".join(f"{v} ({n})" for v, n in Counter(r["vendor"] for r in got).most_common(12))
+                  + (" ..." if len({r["vendor"] for r in got}) > 12 else ""))
         tops = sorted({r["folders"].split(" ; ")[0].split("/")[0] for r in rows})
         if rows and ne == 0 and not a.kind_all:
             print(f"  WARNING: 0 effects. A plugin counts as an effect only when it sits under a folder "

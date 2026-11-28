@@ -572,8 +572,13 @@ function layer2Specs() {
     return [{kind: "type", key: "type", label: "Type", hint: "filters instruments, and the ladders, heatmap, interactions and project table by each project's type",
              items: t.map(x => ({id: x, text: x === UNTYPED ? "untyped" : x}))}];
   }
-  return FXC.map(c => {
-    const vals = synths.filter(isFx).map(s => String(fxrec[s][c.key] || "").trim());
+  // Each effects.csv column is a finer level than the ones before it (category > group > vendor): a row only
+  // offers values of effects that pass the ticks in every row above it.
+  const val = (s, c) => String(fxrec[s][c.key] || "").trim();
+  const passes = (s, c) => !state.off.fx[c.key].has(val(s, c) || NONE);
+  return FXC.map((c, i) => {
+    const pool = synths.filter(isFx).filter(s => FXC.slice(0, i).every(p => passes(s, p)));
+    const vals = pool.map(s => val(s, c));
     const lv = [...new Set(vals.filter(Boolean))].sort(byName);
     const items = lv.map(x => ({id: x, text: x})).concat(vals.some(v => !v) ? [{id: NONE, text: "uncategorised"}] : []);
     return items.length ? {kind: "fx", key: c.key, label: c.col, hint: "", items} : null;
@@ -598,7 +603,7 @@ function layer3Specs() {
 function rowHtml(r) {
   SPECS[r.kind + ":" + r.key] = r;
   const at = `data-kind="${r.kind}" data-key="${esc(r.key)}"`;
-  return `<div class="row"><span class="rowlabel">${esc(r.label)}</span><div class="chips">`
+  return `<div class="row" data-row="${r.kind}:${esc(r.key)}"><span class="rowlabel">${esc(r.label)}</span><div class="chips">`
     + r.items.map(it => `<label class="chip${r.kind === "synth" ? "" : " f"}" title="Double-click to show only this"><input type="checkbox" ${at} data-id="${esc(it.id)}"${isOn(r.kind, r.key, it.id) ? " checked" : ""}>`
       + (it.color ? `<span class="dot" style="background:${it.color}"></span>` : "") + esc(it.text) + "</label>").join("")
     + `</div><button class="sm" ${at} data-act="all">All</button><button class="sm" ${at} data-act="none">None</button>`
@@ -615,7 +620,21 @@ function renderTop() {
   $("#cls").innerHTML = '<option value="all">all</option>' + instClasses.map(c => `<option>${esc(c)}</option>`).join("");
   $("#cls").value = state.cls;
 }
-function renderLayer2() { $("#layer2").innerHTML = layer2Specs().map(rowHtml).join(""); }
+// keepKey: the row the person just clicked in. It is left in place, because replacing the chip under the
+// cursor between the two clicks of a double-click stops the double-click ("show only this") from firing.
+function renderLayer2(keepKey) {
+  const sp = layer2Specs(), box = $("#layer2");
+  const rows = [...box.children].map(e => e.dataset.row);
+  const ids = sp.map(r => r.kind + ":" + r.key);
+  if (keepKey == null || rows.length !== ids.length || rows.some((x, i) => x !== ids[i]) || !ids.includes(keepKey)) {
+    box.innerHTML = sp.map(rowHtml).join(""); return;
+  }
+  sp.forEach((r, i) => {
+    if (ids[i] === keepKey) { SPECS[ids[i]] = r; return; }
+    const t = document.createElement("div"); t.innerHTML = rowHtml(r);
+    box.children[i].replaceWith(t.firstElementChild);
+  });
+}
 function renderLayer3() {
   const sp = layer3Specs();
   $("#layer3").innerHTML = sp[0].items.length ? sp.map(rowHtml).join("")
@@ -626,10 +645,11 @@ function syncChecks() {
   $("#barcount").textContent = `${synths.filter(visible).length} of ${synths.filter(inView).length} shown`;
 }
 // what has to be rebuilt: the whole bar (view/class), the checkbox layer (type/category), or just tick marks
-function changed(level = "sync") {
+function changed(level = "sync", keepKey) {
   state.rev++;
-  if (level === "all") { renderTop(); renderLayer2(); }
-  if (level === "all" || level === "layer3") renderLayer3();
+  if (level === "all") renderTop();
+  if (level === "all" || level === "layer2") renderLayer2(level === "all" ? null : keepKey);
+  if (level === "all" || level === "layer2" || level === "layer3") renderLayer3();
   syncChecks(); renderAll();
 }
 
@@ -674,19 +694,21 @@ function init() {
   $("#tierkey").innerHTML = Object.entries(D.tierColors).map(([t, c]) => `<span><span class="dot" style="background:${c}"></span> ${esc(t)}</span>`).join("");
 
   const bar = $("#bar");
-  const lvl = kind => (kind === "type" || kind === "fx") ? "layer3" : "sync";
-  bar.addEventListener("change", e => { const i = e.target; if (!i.dataset.kind) return; setOn(i.dataset.kind, i.dataset.key, i.dataset.id, i.checked); changed(lvl(i.dataset.kind)); });
+  // an effects row changes what the rows below it offer, so it rebuilds the others (never itself, see renderLayer2)
+  const lvl = kind => kind === "fx" ? "layer2" : kind === "type" ? "layer3" : "sync";
+  const rk = (kind, key) => kind + ":" + key;
+  bar.addEventListener("change", e => { const i = e.target; if (!i.dataset.kind) return; setOn(i.dataset.kind, i.dataset.key, i.dataset.id, i.checked); changed(lvl(i.dataset.kind, i.dataset.key), rk(i.dataset.kind, i.dataset.key)); });
   bar.addEventListener("dblclick", e => {            // show only this chip
     const l = e.target.closest(".chip"); if (!l) return;
     const i = l.querySelector("input"), sp = SPECS[i.dataset.kind + ":" + i.dataset.key];
-    sp.items.forEach(it => setOn(sp.kind, sp.key, it.id, it.id === i.dataset.id)); changed(lvl(sp.kind));
+    sp.items.forEach(it => setOn(sp.kind, sp.key, it.id, it.id === i.dataset.id)); changed(lvl(sp.kind, sp.key), rk(sp.kind, sp.key));
   });
   bar.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     if (b.dataset.view) { state.view = b.dataset.view; return changed("all"); }
     if (b.id === "b-reset") return changed();
     const sp = SPECS[b.dataset.kind + ":" + b.dataset.key]; if (!sp) return;
-    sp.items.forEach(it => setOn(sp.kind, sp.key, it.id, b.dataset.act === "all")); changed(lvl(sp.kind));
+    sp.items.forEach(it => setOn(sp.kind, sp.key, it.id, b.dataset.act === "all")); changed(lvl(sp.kind, sp.key), rk(sp.kind, sp.key));
   });
   $("#cls").onchange = e => { state.cls = e.target.value; changed("all"); };
   $("#ladderhide").addEventListener("change", e => {

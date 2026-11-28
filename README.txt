@@ -456,8 +456,9 @@ AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
         prints a WARNING when it finds no effects. The kind decides which template is used
         for the master, so check the counts it prints ("N instruments, M effects"); the
         script's console output also shows the kind and the template for every plugin.
-      - category = the deepest folder; group = its parent (blank if there is only one level).
-        Audio Effects/Dynamics/Compressors/X  ->  category compressors, group dynamics
+      - category = the broad folder (first one below the top level); group = the finer,
+        deepest folder (blank if there is only one level).
+        Audio Effects/Dynamics/Compressors/X  ->  category dynamics, group compressors
       - Names are cleaned to what stamp.py accepts: spaces become hyphens, other odd characters
         are dropped, and underscores become hyphens ("FabFilter Pro-C 2" -> FabFilter-Pro-C-2).
       - A plugin filed in two folders (or as both .vst3 and .vst) becomes ONE master: the first
@@ -466,6 +467,16 @@ AUTOMATING MASTERS FROM A PLUGIN FOLDER (optional)
     Add --write-effects to (over)write effects.csv with effect,category,group,vendor. The old
     file is saved as effects.csv.bak, vendor values for names that still match are kept, and
     your hand-typed categories ARE replaced by the folder names.
+    The vendor is read from the plugin bundle itself (macOS), in this order: the VST3's
+    moduleinfo.json "Vendor", then the copyright line in Info.plist, then the bundle id
+    (com.fabfilter.x -> "fabfilter", lowercase, so a last resort). Legal suffixes (GmbH, LLC,
+    Inc ...) are dropped and spaces become hyphens. A vendor already in effects.csv always wins;
+    the scan only fills blanks. The scan prints how many it found and which vendors, so you can
+    spot odd spellings. To tidy them, make vendors.csv (what the plugin says, what you want):
+      raw,vendor
+      Valhalla DSP,Valhalla
+      acme,Acme-Audio
+    Plugins that report no vendor at all stay blank: type theirs into effects.csv once.
     Add --write-tags to add a tags.csv row (synth,tag,) for each instrument, using its deepest
     folder (--tag-depth all gives one tag per folder level). Existing rows, including ones with
     a project such as mode=granular, are kept, and the old file is saved as tags.csv.bak. Tags
